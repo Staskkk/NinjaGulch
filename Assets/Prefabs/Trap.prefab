@@ -88,6 +88,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de81570da4e61f042b185b0eb6921f42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 5
+  activateDurationSec: 1
+  activateSprites: []
 --- !u!1 &803077116619927665
 GameObject:
   m_ObjectHideFlags: 0
