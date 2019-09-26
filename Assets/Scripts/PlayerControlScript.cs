@@ -3,25 +3,7 @@ using System.Collections.Generic;
 using Unity.Collections;
 using UnityEngine;
 
-public enum PlayerState
-{
-    Left = 0,
-    Right = 1,
-    Top = 2,
-    Bottom = 3,
-    IdleLeft = 4,
-    IdleRight = 5,
-    IdleTop = 6,
-    IdleBottom = 7
-}
-
-public enum PlayerTurn
-{
-    Up = 0,
-    Down = 1
-}
-
-public class PlayerMovement : MonoBehaviour
+public class PlayerControlScript : MonoBehaviour
 {
     public KeyCode keyLeft;
     public KeyCode keySwitch;
@@ -33,9 +15,10 @@ public class PlayerMovement : MonoBehaviour
 
     public PlayerTurn playerTurn;
 
+    public Transform main;
+
     void Start()
     {
-        
     }
 
     void Update()
@@ -62,10 +45,12 @@ public class PlayerMovement : MonoBehaviour
         {
             playerState = PlayerState.Left;
             movementVector = Vector3.left;
+            main.rotation = Quaternion.Euler(0, 0, 180);
         } else if (isRightHolded)
         {
             playerState = PlayerState.Right;
             movementVector = Vector3.right;
+            main.rotation = Quaternion.Euler(0, 0, 0);
         }
         else
         {
@@ -73,11 +58,13 @@ public class PlayerMovement : MonoBehaviour
             {
                 playerState = PlayerState.Top;
                 movementVector = Vector3.up;
+                main.rotation = Quaternion.Euler(0, 0, 90);
             }
             else
             {
                 playerState = PlayerState.Bottom;
                 movementVector = Vector3.down;
+                main.rotation = Quaternion.Euler(0, 0, -90);
             }
         }
 
