@@ -23,6 +23,7 @@ public class TrapScript : MonoBehaviour
 
     public void Activate()
     {
+        Debug.Log($"Trap was activated!");
         Utils.MakeAnimation(objectScript, activateDurationSec, activateSprites, true, () =>
         {
             Utils.MakeAnimation(objectScript, objectScript.durationSec, objectScript.sprites);
@@ -37,7 +38,7 @@ public class TrapScript : MonoBehaviour
             if (player.isAlive)
             {
                 this.Activate();
-                player.SetDamage(damage);
+                player.SetDamage(damage, out bool isDied);
             }
         }
     }

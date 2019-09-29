@@ -98,7 +98,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4374011951563320457
 Transform:
   m_ObjectHideFlags: 0
@@ -168,3 +168,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb75902dbaf69cc44b084040560f6f96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  powerType: 0
+  powerDuration: 30
+  grabSprites: []
+  grabDurationSec: 1
+  positionSprites: []
+  positionDurationSec: 1
+  katanaSprites:
+  - {fileID: 21300000, guid: d0886eb89b8c1334a97172dee2b67b2f, type: 3}
+  immortalitySprites:
+  - {fileID: 21300000, guid: d0886eb89b8c1334a97172dee2b67b2f, type: 3}
+  speedUpSprites:
+  - {fileID: 21300000, guid: d0886eb89b8c1334a97172dee2b67b2f, type: 3}
+  shurikensSprites:
+  - {fileID: 21300000, guid: d0886eb89b8c1334a97172dee2b67b2f, type: 3}
+  powerUpsDurationSec: 1

@@ -1,10 +1,13 @@
-﻿using System.Collections;
+﻿using Assets.Scripts;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PowerUpScript : MonoBehaviour
+public class PowerUpScript : MonoBehaviour, IDynamicObject
 {
     public PowerUp powerType;
+
+    public float powerDuration;
 
     public Sprite[] grabSprites;
 
@@ -14,38 +17,56 @@ public class PowerUpScript : MonoBehaviour
 
     public float positionDurationSec = 1;
 
-    public bool isGrabbed;
+    public Sprite[] katanaSprites;
+    public Sprite[] immortalitySprites;
+    public Sprite[] speedUpSprites;
+    public Sprite[] shurikensSprites;
+
+    public float powerUpsDurationSec;
+
+
+    public Team Team { get; set; } = Team.None;
 
     private ObjectScript objectScript;
 
     void Start()
     {
-        objectScript = GetComponent<ObjectScript>();
     }
 
     void Update()
     {
     }
 
-    public void Grab()
+    public void Init()
     {
-        if (!isGrabbed)
-        {
-            isGrabbed = true;
-            Utils.MakeAnimation(objectScript, grabDurationSec, grabSprites, true, () =>
-            {
-                objectScript.spriteRenderer.enabled = false;
-            });
-        }
-    }
+        Debug.Log($"{this.powerType} power-up was created!");
+        objectScript = GetComponent<ObjectScript>();
 
-    public void SetPosition(Vector3 position)
-    {
-        transform.position = new Vector3(position.x, position.y, transform.position.z);
         Utils.MakeAnimation(objectScript, positionDurationSec, positionSprites, true, () =>
         {
-            Utils.MakeAnimation(objectScript, objectScript.durationSec, objectScript.sprites);
+            switch (powerType)
+            {
+                case PowerUp.Katana:
+                    Utils.MakeAnimation(objectScript, powerUpsDurationSec, katanaSprites);
+                    break;
+                case PowerUp.Immortality:
+                    Utils.MakeAnimation(objectScript, powerUpsDurationSec, immortalitySprites);
+                    break;
+                case PowerUp.SpeedUp:
+                    Utils.MakeAnimation(objectScript, powerUpsDurationSec, speedUpSprites);
+                    break;
+                case PowerUp.Shurikens:
+                    Utils.MakeAnimation(objectScript, powerUpsDurationSec, shurikensSprites);
+                    break;
+            }
         });
+    }
+
+    public void Grab()
+    {
+        Debug.Log($"{this.powerType} power-up was grabbed!");
+        Utils.MakeAnimation(objectScript, grabDurationSec, grabSprites);
+        Destroy(gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -53,10 +74,9 @@ public class PowerUpScript : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             var player = other.GetComponent<PlayerScript>();
-            if (player.isAlive && !player.isWithFlag && !this.isGrabbed)
+            if (player.isAlive && player.carriedFlag == null)
             {
-                Debug.Log($"{player.team} ninja takes the power-up {this.powerType}!");
-                player.SetPowerUp(this.powerType);
+                player.SetPowerUp(this.powerType, this.powerDuration);
                 this.Grab();
             }
         }

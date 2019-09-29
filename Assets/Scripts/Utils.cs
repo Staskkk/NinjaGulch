@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 
 public enum PlayerState
@@ -22,20 +23,29 @@ public enum PlayerTurn
 
 public enum PowerUp
 {
-    None,
-    Katana,
-    Shurikens,
-    Immortality,
-    SpeedUp,
+    None = 0,
+    Katana = 1,
+    Immortality = 2,
+    SpeedUp = 3,
+    Shurikens = 4,
 }
 
 public enum Team
 {
-    Red,
-    Blue
+    Red = 0,
+    Blue = 1,
+    None = 2
+}
+
+public enum ScoreOption
+{
+    NinjaElimination,
+    FlagConvey,
 }
 
 public delegate void NextAction();
+
+public delegate void SetupParamsFunc(GameObject obj);
 
 public static class Utils
 {

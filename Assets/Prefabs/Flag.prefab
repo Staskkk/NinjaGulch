@@ -98,7 +98,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8439075376804446400
 Transform:
   m_ObjectHideFlags: 0
@@ -168,4 +168,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1deddd26c34395e45a2c0977a2022033, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  team: 0
+  grabSprites: []
+  grabDurationSec: 1
+  positionSprites: []
+  positionDurationSec: 1
+  carrierPlayer: {fileID: 0}

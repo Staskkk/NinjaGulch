@@ -15,7 +15,7 @@ public class NinjaAnimationScript : MonoBehaviour
 
     public float durationSec = 1;
 
-    public PlayerControlScript playerControl;
+    private PlayerControlScript playerControl;
 
     private Sprite[][] movement;
 
@@ -25,6 +25,7 @@ public class NinjaAnimationScript : MonoBehaviour
 
     void Start()
     {
+        playerControl = GetComponentInChildren<PlayerControlScript>(false);
         objectScript = GetComponent<ObjectScript>();
         movement = new Sprite[8][];
         movement[(int)PlayerState.Left] = movementLeft;
@@ -68,6 +69,10 @@ public class NinjaAnimationScript : MonoBehaviour
     public void DieAnimation()
     {
         objectScript.spriteRenderer.enabled = false;
+    }
+
+    public void ResurrectAnimation()
+    {
     }
 }
 

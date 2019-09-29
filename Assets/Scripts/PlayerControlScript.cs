@@ -9,7 +9,7 @@ public class PlayerControlScript : MonoBehaviour
     public KeyCode keySwitch;
     public KeyCode keyRight;
 
-    public float speed;
+    public PlayerScript player;
 
     public PlayerState playerState;
 
@@ -68,6 +68,6 @@ public class PlayerControlScript : MonoBehaviour
             }
         }
 
-        gameObject.transform.position += speed * movementVector * Time.deltaTime;
+        player.transform.position += (player.speed + player.bonusSpeed) * movementVector * Time.deltaTime;
     }
 }
