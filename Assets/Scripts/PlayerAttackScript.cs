@@ -10,6 +10,12 @@ public class PlayerAttackScript : MonoBehaviour
 
     public float preHitDelay;
 
+    public bool isHitDelay;
+
+    private bool isHitting;
+
+    private PlayerScript otherPlayer;
+
     private Coroutine hittingCoroutine;
 
     void Start()
@@ -17,38 +23,41 @@ public class PlayerAttackScript : MonoBehaviour
     }
 
     void Update()
-    {        
-    }
-
-    public void StartHitting(PlayerScript otherPlayer)
     {
-        hittingCoroutine = StartCoroutine(HittingRoutine(otherPlayer));
-    }
-
-    private IEnumerator HittingRoutine(PlayerScript otherPlayer)
-    {
-        while (true)
+        if (otherPlayer != null && currentPlayer.Team != otherPlayer.Team && !currentPlayer.isRangeAttack && !isHitDelay && !isHitting)
         {
-            yield return new WaitForSeconds(preHitDelay);
-            if (otherPlayer.isAlive)
+            MakeHit();
+        }
+    }
+
+    public void MakeHit()
+    {
+        isHitting = true;
+        hittingCoroutine = StartCoroutine(HittingRoutine());
+    }
+    
+    private IEnumerator HittingDelayRoutine()
+    {
+        yield return new WaitForSeconds(hitDelay);
+        isHitDelay = false;
+    }
+
+    private IEnumerator HittingRoutine()
+    {
+        yield return new WaitForSeconds(preHitDelay);
+        if (otherPlayer != null && isHitting && otherPlayer.isAlive)
+        {
+            otherPlayer.SetDamage(currentPlayer.damage + currentPlayer.bonusDamage, out bool isDied);
+            if (isDied)
             {
-                otherPlayer.SetDamage(currentPlayer.damage + currentPlayer.bonusDamage, out bool isDied);
-                if (isDied)
-                {
-                    GameManagerScript.i.AddScores(ScoreOption.NinjaElimination, currentPlayer.Team);
-                }
+                GameManagerScript.i.AddScores(ScoreOption.NinjaElimination, currentPlayer.Team);
             }
 
-            yield return new WaitForSeconds(hitDelay);
+            isHitDelay = true;
+            StartCoroutine(HittingDelayRoutine());
         }
-    }
 
-    public void StopHitting()
-    {
-        if (hittingCoroutine != null)
-        {
-            StopCoroutine(hittingCoroutine);
-        }
+        isHitting = false;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -58,7 +67,7 @@ public class PlayerAttackScript : MonoBehaviour
             var player = other.GetComponent<PlayerScript>();
             if (currentPlayer.Team != player.Team && !currentPlayer.isRangeAttack)
             {
-                this.StartHitting(player);
+                this.otherPlayer = player;
             }
         }
     }
@@ -70,7 +79,12 @@ public class PlayerAttackScript : MonoBehaviour
             var player = other.GetComponent<PlayerScript>();
             if (currentPlayer.Team != player.Team && !currentPlayer.isRangeAttack)
             {
-                this.StopHitting();
+                this.otherPlayer = null;
+                if (hittingCoroutine != null)
+                {
+                    isHitting = false;
+                    StopCoroutine(hittingCoroutine);
+                }
             }
         }
     }

@@ -56,8 +56,8 @@ public class FlagScript : MonoBehaviour, IDynamicObject
     public void Drop(Vector3 position)
     {
         Debug.Log($"{this.Team} flag was dropped!");
-        this.SetPosition(position);
         this.isDropped = true;
+        this.SetPosition(position);
     }
 
     public void Convey()
@@ -103,7 +103,7 @@ public class FlagScript : MonoBehaviour, IDynamicObject
                     if (this.isDropped)
                     {
                         this.Return();
-                    } else if (player.carriedFlag != null && !this.isDropped)
+                    } else if (player.carriedFlag != null)
                     {
                         player.carriedFlag.Convey();
                     }
