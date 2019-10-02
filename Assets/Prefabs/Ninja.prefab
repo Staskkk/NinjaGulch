@@ -46,8 +46,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 1, y: 0}
-  m_Size: {x: 1, y: 1.5}
+  m_Offset: {x: 11, y: 0}
+  m_Size: {x: 14, y: 14}
   m_Direction: 1
 --- !u!114 &1023561737
 MonoBehaviour:
@@ -64,6 +64,7 @@ MonoBehaviour:
   currentPlayer: {fileID: 4002064923176293825}
   hitDelay: 1
   preHitDelay: 0.1
+  isHitDelay: 0
 --- !u!1 &904139657
 GameObject:
   m_ObjectHideFlags: 0
@@ -217,8 +218,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.1, y: 0}
-  m_Size: {x: 0.97, y: 2.39}
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 11, y: 16}
   m_Direction: 0
 --- !u!50 &1668664810959455166
 Rigidbody2D:
@@ -280,7 +281,7 @@ MonoBehaviour:
   carriedFlag: {fileID: 0}
   isImmortal: 0
   isRangeAttack: 0
-  speed: 2.5
+  speed: 25
   bonusSpeed: 0
   isAlive: 1
   powerUp: 0
@@ -296,18 +297,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6a1e36110d305c4b857204ecbfa8fc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementLeft: []
-  movementTop: []
+  movementLeft:
+  - {fileID: 21300000, guid: 780b8873108412049a11918f9b13cb32, type: 3}
+  - {fileID: 21300000, guid: ef3b5562dc876ce42b33e7b7821e5148, type: 3}
+  - {fileID: 21300000, guid: 780b8873108412049a11918f9b13cb32, type: 3}
+  - {fileID: 21300000, guid: d8472aa691bfaae45a0d817f1cd5c1b9, type: 3}
+  movementTop:
+  - {fileID: 21300000, guid: fcfd6b56cedb27448949ba8a03e66f84, type: 3}
+  - {fileID: 21300000, guid: 252ef30c65162124bb4c5dc607cf48cc, type: 3}
+  - {fileID: 21300000, guid: fcfd6b56cedb27448949ba8a03e66f84, type: 3}
+  - {fileID: 21300000, guid: 06eae7fd90f518742b428f827bb51fb4, type: 3}
   movementRight:
-  - {fileID: 21300000, guid: 39ff9e1e415d68e4ea9dd713f8371a9a, type: 3}
-  - {fileID: 21300000, guid: a15ad2258fb4b2d459776c24ecf2e5ca, type: 3}
-  - {fileID: 21300000, guid: df23b5732b336f544939f1c92853620f, type: 3}
-  movementBottom: []
-  idleLeft: []
-  idleTop: []
-  idleRight: []
-  idleBottom: []
-  durationSec: 0.5
+  - {fileID: 21300000, guid: 7f5e6ac0e59e4004b8bc10f92bb2de01, type: 3}
+  - {fileID: 21300000, guid: 9436cb350e9be9647b96af8c80871f35, type: 3}
+  - {fileID: 21300000, guid: 7f5e6ac0e59e4004b8bc10f92bb2de01, type: 3}
+  - {fileID: 21300000, guid: e7d0b7ff0807c0847af6d6c89c53763a, type: 3}
+  movementBottom:
+  - {fileID: 21300000, guid: a9dd1fa0d0b4c5449b72d9dd854ecf99, type: 3}
+  - {fileID: 21300000, guid: fd830a9d631f32c409a331b9352a9fad, type: 3}
+  - {fileID: 21300000, guid: a9dd1fa0d0b4c5449b72d9dd854ecf99, type: 3}
+  - {fileID: 21300000, guid: b94ea25e87a7f5e40b8629e174ec838b, type: 3}
+  idleLeft:
+  - {fileID: 21300000, guid: 780b8873108412049a11918f9b13cb32, type: 3}
+  idleTop:
+  - {fileID: 21300000, guid: fcfd6b56cedb27448949ba8a03e66f84, type: 3}
+  idleRight:
+  - {fileID: 21300000, guid: 7f5e6ac0e59e4004b8bc10f92bb2de01, type: 3}
+  idleBottom:
+  - {fileID: 21300000, guid: a9dd1fa0d0b4c5449b72d9dd854ecf99, type: 3}
+  durationSec: 0.7
 --- !u!82 &2903847474356583485
 AudioSource:
   m_ObjectHideFlags: 0
@@ -449,8 +467,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 1.99, y: 0}
-  m_Size: {x: 3.47, y: 1.5}
+  m_Offset: {x: 20, y: 0}
+  m_Size: {x: 32, y: 14}
   m_Direction: 1
 --- !u!114 &1668664810297113743
 MonoBehaviour:
@@ -490,7 +508,7 @@ Transform:
   m_GameObject: {fileID: 8885059501588137544}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.938, y: 1.166, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1668664810959455167}
   m_RootOrder: 1
@@ -533,7 +551,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 82ac5d7acc102cc41b01f7d8f442e486, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7f5e6ac0e59e4004b8bc10f92bb2de01, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

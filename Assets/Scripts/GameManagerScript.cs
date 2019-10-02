@@ -27,11 +27,15 @@ public class GameManagerScript : MonoBehaviour
 
     public float flagConveyScore;
 
+    public float gameTimeoutSec;
+
     private List<GameObject> gameObjects = new List<GameObject>();
 
     private float[] teamScores = new float[2];
 
     private Coroutine powerUpCoroutine;
+
+    private Coroutine gameTimeoutCoroutine;
 
     private GameObject powerUpObj;
 
@@ -71,6 +75,7 @@ public class GameManagerScript : MonoBehaviour
         CreateGameObject(flag, flagStartPoints[(int)Team.Red], Team.Red);
         CreateGameObject(flag, flagStartPoints[(int)Team.Blue], Team.Blue);
         powerUpCoroutine = StartCoroutine(PowerUpGenerator());
+        gameTimeoutCoroutine = StartCoroutine(GameTimeout());
     }
     
     public GameObject CreateNinja(Team team)
@@ -80,6 +85,18 @@ public class GameManagerScript : MonoBehaviour
             {
                 obj.GetComponent<PlayerScript>().playerControls[(int)team].enabled = true;
             });
+    }
+
+    private IEnumerator GameTimeout()
+    {
+        float gameTimeout = gameTimeoutSec;
+        while (gameTimeout > 0)
+        {
+            yield return new WaitForSeconds(1);
+            gameTimeout--;
+        }
+
+        GameOver();
     }
 
     private IEnumerator PowerUpGenerator()
@@ -124,6 +141,11 @@ public class GameManagerScript : MonoBehaviour
         if (powerUpCoroutine != null)
         {
             StopCoroutine(powerUpCoroutine);
+        }
+
+        if (gameTimeoutCoroutine != null)
+        {
+            StopCoroutine(gameTimeoutCoroutine);
         }
 
         while (gameObjects.Count > 0)

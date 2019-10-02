@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-[RequireComponent(typeof(SpriteRenderer))]
 
 public class ScaleScript : MonoBehaviour
 {
+    public float width;
+
+    public float height;
+    
     public bool executeOnUpdate;
 
     public RectTransform canvas;
@@ -28,10 +31,6 @@ public class ScaleScript : MonoBehaviour
 
     void Resize()
     {
-        SpriteRenderer sr = GetComponent<SpriteRenderer>();
-
-        float width = sr.sprite.bounds.size.x;
-        float height = sr.sprite.bounds.size.y;
         float panelWidth = leftPanel.rect.width;
 
         float worldScreenHeight = Camera.main.orthographicSize * 2f;
@@ -56,7 +55,7 @@ public class ScaleScript : MonoBehaviour
             imgScale.y = fullScaleY;
         }
 
-        Vector3 panelScale = new Vector3(worldScreenWidth * 0.1f / panelWidth, 1, 1);
+        Vector3 panelScale = new Vector3(worldScreenWidth * 0.09375f / panelWidth, 1, 1);
         leftPanel.localScale = panelScale;
         rightPanel.localScale = panelScale;
         transform.localScale = imgScale;
