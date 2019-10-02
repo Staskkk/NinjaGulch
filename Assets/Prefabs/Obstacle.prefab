@@ -127,7 +127,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 4926788299402006665}
   sprites:
-  - {fileID: 21300000, guid: cb0ae2b4db849a8468d72ebb382bc544, type: 3}
+  - {fileID: 21300000, guid: be0d10315ee85bd4c81ef7d4c344bb50, type: 3}
   durationSec: 1
 --- !u!61 &6573054410698165741
 BoxCollider2D:

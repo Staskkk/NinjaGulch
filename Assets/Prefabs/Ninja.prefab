@@ -256,7 +256,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 5008338643953373960}
   sprites:
-  - {fileID: 21300000, guid: 82ac5d7acc102cc41b01f7d8f442e486, type: 3}
+  - {fileID: 21300000, guid: 7f5e6ac0e59e4004b8bc10f92bb2de01, type: 3}
   durationSec: 1
 --- !u!114 &4002064923176293825
 MonoBehaviour:
