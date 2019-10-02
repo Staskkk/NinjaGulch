@@ -41,7 +41,7 @@ public class ScaleScript : MonoBehaviour
 
         Vector3 imgScale = new Vector3(1f, 1f, 1f);
 
-        float fullScaleX = worldScreenWidth * 0.8f / width;
+        float fullScaleX = worldScreenWidth * 0.801f / width;
         float fullScaleY = worldScreenHeight / height;
 
         if (fullScaleX < fullScaleY)

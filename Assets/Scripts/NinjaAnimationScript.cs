@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class NinjaAnimationScript : MonoBehaviour
@@ -25,7 +26,7 @@ public class NinjaAnimationScript : MonoBehaviour
 
     void Start()
     {
-        playerControl = GetComponentInChildren<PlayerControlScript>(false);
+        playerControl = GetComponentsInChildren<PlayerControlScript>().FirstOrDefault(elem => elem.enabled);
         objectScript = GetComponent<ObjectScript>();
         movement = new Sprite[8][];
         movement[(int)PlayerState.Left] = movementLeft;
