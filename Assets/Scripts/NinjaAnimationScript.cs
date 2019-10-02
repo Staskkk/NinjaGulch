@@ -57,6 +57,11 @@ public class NinjaAnimationScript : MonoBehaviour
 
     }
 
+    public void ConveyFlagAnimation()
+    {
+
+    }
+
     public void PowerUpAnimation(PowerUp powerUp)
     {
 

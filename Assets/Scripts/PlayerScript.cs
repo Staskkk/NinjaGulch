@@ -2,10 +2,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerScript : MonoBehaviour, IDynamicObject
 {
     public PlayerControlScript[] playerControls;
+
+    //public Text[] playerHealthTexts;
 
     public bool autoResurrect = true;
 
@@ -39,6 +42,7 @@ public class PlayerScript : MonoBehaviour, IDynamicObject
 
     void Start()
     {
+        //playerHealthTexts[(int)Team].text = Mathf.RoundToInt(health).ToString();
     }
 
     void Update()
@@ -65,6 +69,13 @@ public class PlayerScript : MonoBehaviour, IDynamicObject
         ninjaAnimation.TakeFlagAnimation();
     }
 
+    public void ConveyFlag()
+    {
+        this.carriedFlag.Convey();
+        this.carriedFlag = null;
+        ninjaAnimation.ConveyFlagAnimation();
+    }
+
     public void SetDamage(float damage, out bool isDied)
     {
         isDied = false;
@@ -75,6 +86,7 @@ public class PlayerScript : MonoBehaviour, IDynamicObject
 
         Debug.Log($"{this.Team} ninja was hit, damage: {damage}!");
         health = health > damage ? health - damage : 0;
+        //playerHealthTexts[(int)Team].text = Mathf.RoundToInt(health).ToString();
         ninjaAnimation.DamageAnimation(damage);
         if (health <= 0)
         {

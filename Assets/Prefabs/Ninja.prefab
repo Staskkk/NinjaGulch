@@ -273,6 +273,9 @@ MonoBehaviour:
   playerControls:
   - {fileID: 904139659}
   - {fileID: 1088491792}
+  playerHealthTexts:
+  - {fileID: 0}
+  - {fileID: 0}
   autoResurrect: 1
   health: 2
   maxHealth: 2

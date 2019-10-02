@@ -105,7 +105,7 @@ public class FlagScript : MonoBehaviour, IDynamicObject
                         this.Return();
                     } else if (player.carriedFlag != null)
                     {
-                        player.carriedFlag.Convey();
+                        player.ConveyFlag();
                     }
                 }
             }

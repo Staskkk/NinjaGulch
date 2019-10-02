@@ -27,6 +27,8 @@ public class GameManagerScript : MonoBehaviour
 
     public float flagConveyScore;
 
+    public bool isEndless;
+
     public float gameTimeoutSec;
 
     private List<GameObject> gameObjects = new List<GameObject>();
@@ -75,7 +77,10 @@ public class GameManagerScript : MonoBehaviour
         CreateGameObject(flag, flagStartPoints[(int)Team.Red], Team.Red);
         CreateGameObject(flag, flagStartPoints[(int)Team.Blue], Team.Blue);
         powerUpCoroutine = StartCoroutine(PowerUpGenerator());
-        gameTimeoutCoroutine = StartCoroutine(GameTimeout());
+        if (!isEndless)
+        {
+            gameTimeoutCoroutine = StartCoroutine(GameTimeout());
+        }
     }
     
     public GameObject CreateNinja(Team team)
@@ -148,9 +153,9 @@ public class GameManagerScript : MonoBehaviour
             StopCoroutine(gameTimeoutCoroutine);
         }
 
-        while (gameObjects.Count > 0)
+        foreach (var gameObj in gameObjects)
         {
-            Destroy(gameObjects[0]);
+            Destroy(gameObj);
         }
     }
 }
