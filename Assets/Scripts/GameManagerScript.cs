@@ -1,11 +1,16 @@
 ﻿using Assets.Scripts;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class GameManagerScript : MonoBehaviour
 {
     public static GameManagerScript i;
+
+    public TextMeshProUGUI[] healthTexts;
+
+    public TextMeshProUGUI[] scoreTexts;
 
     public GameObject ninja;
 
@@ -41,6 +46,8 @@ public class GameManagerScript : MonoBehaviour
 
     private GameObject powerUpObj;
 
+    private PlayerScript[] ninjas = new PlayerScript[2];
+
     private void Awake()
     {
         i = this;
@@ -53,6 +60,14 @@ public class GameManagerScript : MonoBehaviour
 
     void Update()
     {
+        for (int i = 0; i < ninjas.Length; i++)
+        {
+            if (ninjas[i] != null)
+            {
+                healthTexts[i].text = Mathf.RoundToInt(ninjas[i].health).ToString();
+                scoreTexts[i].text = Mathf.RoundToInt(teamScores[i]).ToString();
+            }
+        }
     }
 
     public void AddScores(ScoreOption scoreOption, Team team)
@@ -128,6 +143,11 @@ public class GameManagerScript : MonoBehaviour
         var obj = Instantiate(prefab, new Vector3(startPoint.position.x, startPoint.position.y, prefab.transform.position.z), Quaternion.identity, map);
         var dynObj = obj.GetComponent<IDynamicObject>();
         dynObj.Team = team;
+        if (obj.CompareTag("Player"))
+        {
+            ninjas[(int)team] = obj.GetComponent<PlayerScript>();
+        }
+
         setupParamsFunc?.Invoke(obj);
         gameObjects.Add(obj);
         obj.SetActive(true);
