@@ -35,6 +35,24 @@ public class PowerUpScript : MonoBehaviour, IDynamicObject
 
     void Start()
     {
+        objectScript = GetComponent<ObjectScript>();
+
+        //Utils.MakeAnimation(objectScript, positionDurationSec, positionSprites, true);
+        switch (powerType)
+        {
+            case PowerUp.Katana:
+                Utils.MakeAnimation(objectScript, powerUpsDurationSec, katanaSprites);
+                break;
+            case PowerUp.Immortality:
+                Utils.MakeAnimation(objectScript, powerUpsDurationSec, immortalitySprites);
+                break;
+            case PowerUp.SpeedUp:
+                Utils.MakeAnimation(objectScript, powerUpsDurationSec, speedUpSprites);
+                break;
+            case PowerUp.Shurikens:
+                Utils.MakeAnimation(objectScript, powerUpsDurationSec, shurikensSprites);
+                break;
+        }
     }
 
     void Update()
@@ -44,32 +62,12 @@ public class PowerUpScript : MonoBehaviour, IDynamicObject
     public void Init()
     {
         Debug.Log($"{this.powerType} power-up was created!");
-        objectScript = GetComponent<ObjectScript>();
-
-        Utils.MakeAnimation(objectScript, positionDurationSec, positionSprites, true, () =>
-        {
-            switch (powerType)
-            {
-                case PowerUp.Katana:
-                    Utils.MakeAnimation(objectScript, powerUpsDurationSec, katanaSprites);
-                    break;
-                case PowerUp.Immortality:
-                    Utils.MakeAnimation(objectScript, powerUpsDurationSec, immortalitySprites);
-                    break;
-                case PowerUp.SpeedUp:
-                    Utils.MakeAnimation(objectScript, powerUpsDurationSec, speedUpSprites);
-                    break;
-                case PowerUp.Shurikens:
-                    Utils.MakeAnimation(objectScript, powerUpsDurationSec, shurikensSprites);
-                    break;
-            }
-        });
     }
 
     public void Grab()
     {
         Debug.Log($"{this.powerType} power-up was grabbed!");
-        Utils.MakeAnimation(objectScript, grabDurationSec, grabSprites);
+        //Utils.MakeAnimation(objectScript, grabDurationSec, grabSprites);
         Destroy(gameObject);
     }
 

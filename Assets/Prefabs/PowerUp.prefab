@@ -69,12 +69,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d0886eb89b8c1334a97172dee2b67b2f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c95e042a342bc5c498ec27ba81c3222e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.92, y: 0.97}
+  m_Size: {x: 16, y: 16}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -177,11 +177,11 @@ MonoBehaviour:
   positionSprites: []
   positionDurationSec: 1
   katanaSprites:
-  - {fileID: 21300000, guid: d0886eb89b8c1334a97172dee2b67b2f, type: 3}
+  - {fileID: 21300000, guid: c95e042a342bc5c498ec27ba81c3222e, type: 3}
   immortalitySprites:
-  - {fileID: 21300000, guid: d0886eb89b8c1334a97172dee2b67b2f, type: 3}
+  - {fileID: 21300000, guid: 08067ffd1fa1bfe488f8f3b748f2bbe5, type: 3}
   speedUpSprites:
-  - {fileID: 21300000, guid: d0886eb89b8c1334a97172dee2b67b2f, type: 3}
+  - {fileID: 21300000, guid: 5cb52a014fce97742a2d7c3bbca9ce4b, type: 3}
   shurikensSprites:
   - {fileID: 21300000, guid: d0886eb89b8c1334a97172dee2b67b2f, type: 3}
   powerUpsDurationSec: 1
