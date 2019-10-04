@@ -65,7 +65,7 @@ public class PlayerScript : MonoBehaviour, IDynamicObject
     {
         Debug.Log($"{this.Team} ninja takes the flag!");
         this.carriedFlag = flag;
-        this.SetPowerUp(PowerUp.None);
+        this.SetPowerUp(null);
         ninjaAnimation.TakeFlagAnimation();
     }
 
@@ -119,18 +119,18 @@ public class PlayerScript : MonoBehaviour, IDynamicObject
         GameManagerScript.i.CreateNinja(this.Team);
     }
 
-    public void SetPowerUp(PowerUp powerUp, float? powerDuration = null)
+    public void SetPowerUp(PowerUpScript powerUpScript, float? powerDuration = null)
     {
-        Debug.Log($"{this.Team} ninja gets power-up {powerUp}, duration: {powerDuration}!");
-        this.powerUp = powerUp;
-        switch (powerUp)
+        this.powerUp = powerUpScript?.powerType ?? PowerUp.None;
+        Debug.Log($"{this.Team} ninja gets power-up {this.powerUp}, duration: {powerDuration}!");
+        switch (this.powerUp)
         {
             case PowerUp.SpeedUp:
-                bonusSpeed = 1;
+                bonusSpeed += powerUpScript.bonusSpeed;
                 powerUpCoroutine = StartCoroutine(powerUpRoutine(powerDuration.Value));
                 break;
             case PowerUp.Katana:
-                bonusDamage = 1;
+                bonusDamage += powerUpScript.bonusDamage;
                 powerUpCoroutine = StartCoroutine(powerUpRoutine(powerDuration.Value));
                 break;
             case PowerUp.Shurikens:
@@ -161,7 +161,7 @@ public class PlayerScript : MonoBehaviour, IDynamicObject
     private IEnumerator powerUpRoutine(float powerDuration)
     {
         yield return new WaitForSeconds(powerDuration);
-        this.SetPowerUp(PowerUp.None);
+        this.SetPowerUp(null);
     }
 
     private void OnTriggerEnter2D(Collider2D other)

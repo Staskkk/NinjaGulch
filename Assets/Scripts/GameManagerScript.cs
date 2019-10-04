@@ -8,6 +8,8 @@ public class GameManagerScript : MonoBehaviour
 {
     public static GameManagerScript i;
 
+    public TextMeshProUGUI timerText;
+
     public TextMeshProUGUI[] healthTexts;
 
     public TextMeshProUGUI[] scoreTexts;
@@ -35,6 +37,14 @@ public class GameManagerScript : MonoBehaviour
     public bool isEndless;
 
     public float gameTimeoutSec;
+
+    public float rushModeTimeSec;
+
+    public bool isRushMode;
+
+    public float rushModeExtraSpeed;
+
+    private float extraSpeed;
 
     private List<GameObject> gameObjects = new List<GameObject>();
 
@@ -103,17 +113,32 @@ public class GameManagerScript : MonoBehaviour
         return CreateGameObject(ninja, ninjaStartPoints[(int)team], team,
             (obj) =>
             {
-                obj.GetComponent<PlayerScript>().playerControls[(int)team].enabled = true;
+                var playerObj = obj.GetComponent<PlayerScript>();
+                playerObj.playerControls[(int)team].enabled = true;
+                playerObj.speed += extraSpeed;
             });
     }
 
     private IEnumerator GameTimeout()
     {
         float gameTimeout = gameTimeoutSec;
+        timerText.text = System.TimeSpan.FromSeconds(gameTimeout).ToString(@"mm\:ss");
         while (gameTimeout > 0)
         {
             yield return new WaitForSeconds(1);
             gameTimeout--;
+            timerText.text = System.TimeSpan.FromSeconds(gameTimeout).ToString(@"mm\:ss");
+            if (gameTimeout <= rushModeTimeSec && !isRushMode)
+            {
+                isRushMode = true;
+                var players = GameObject.FindGameObjectsWithTag("Player");
+                timerText.color = Color.red;
+                extraSpeed = rushModeExtraSpeed;
+                foreach (var player in players)
+                {
+                    player.GetComponent<PlayerScript>().speed += extraSpeed;
+                }
+            }
         }
 
         GameOver();
@@ -173,6 +198,7 @@ public class GameManagerScript : MonoBehaviour
             StopCoroutine(gameTimeoutCoroutine);
         }
 
+        timerText.text = "GAME OVER!";
         foreach (var gameObj in gameObjects)
         {
             Destroy(gameObj);

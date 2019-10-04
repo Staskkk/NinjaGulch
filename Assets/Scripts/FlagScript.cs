@@ -5,6 +5,12 @@ using UnityEngine;
 
 public class FlagScript : MonoBehaviour, IDynamicObject
 {
+    public Sprite[] onBaseSprites;
+
+    public Sprite[] droppedSprites;
+
+    public float spritesDurationSec;
+
     public Sprite[] grabSprites;
 
     public float grabDurationSec = 1;
@@ -23,6 +29,8 @@ public class FlagScript : MonoBehaviour, IDynamicObject
 
     void Start()
     {
+        //Utils.MakeAnimation(objectScript, positionDurationSec, positionSprites);
+        Utils.MakeAnimation(objectScript, spritesDurationSec, onBaseSprites);
     }
 
     void Update()
@@ -35,11 +43,6 @@ public class FlagScript : MonoBehaviour, IDynamicObject
         objectScript = GetComponent<ObjectScript>();
         carrierPlayer = null;
         this.isDropped = false;
-
-        Utils.MakeAnimation(objectScript, positionDurationSec, positionSprites, true, () =>
-        {
-            Utils.MakeAnimation(objectScript, objectScript.durationSec, objectScript.sprites);
-        });
     }
 
     public void Grab(PlayerScript carrierPlayer)
@@ -47,7 +50,7 @@ public class FlagScript : MonoBehaviour, IDynamicObject
         Debug.Log($"{this.Team} flag was grabbed by {carrierPlayer.Team} ninja!");
         this.isDropped = false;
         this.carrierPlayer = carrierPlayer;
-        Utils.MakeAnimation(objectScript, grabDurationSec, grabSprites);
+        //Utils.MakeAnimation(objectScript, grabDurationSec, grabSprites);
         gameObject.SetActive(false);
         transform.parent = carrierPlayer.transform;
         transform.localPosition = new Vector3(0, 0, transform.localPosition.z);
@@ -58,33 +61,34 @@ public class FlagScript : MonoBehaviour, IDynamicObject
         Debug.Log($"{this.Team} flag was dropped!");
         this.isDropped = true;
         this.SetPosition(position);
+        Utils.MakeAnimation(objectScript, spritesDurationSec, droppedSprites);
     }
 
     public void Convey()
     {
         Debug.Log($"{this.Team} flag was conveyed!");
+        this.isDropped = false;
         GameManagerScript.i.AddScores(ScoreOption.FlagConvey, carrierPlayer.Team);
         this.SetPosition(GameManagerScript.i.flagStartPoints[(int)this.Team].position);
+        Utils.MakeAnimation(objectScript, spritesDurationSec, onBaseSprites);
     }
 
     public void Return()
     {
         Debug.Log($"{this.Team} flag was returned!");
+        this.isDropped = false;
         this.SetPosition(GameManagerScript.i.flagStartPoints[(int)this.Team].position);
+        Utils.MakeAnimation(objectScript, spritesDurationSec, onBaseSprites);
     }
 
     private void SetPosition(Vector3 position)
     {
         gameObject.SetActive(false);
-        this.isDropped = false;
         transform.parent = GameManagerScript.i.map;
         transform.position = new Vector3(position.x, position.y, transform.position.z);
         carrierPlayer = null;
         gameObject.SetActive(true);
-        Utils.MakeAnimation(objectScript, positionDurationSec, positionSprites, true, () =>
-        {
-            Utils.MakeAnimation(objectScript, objectScript.durationSec, objectScript.sprites);
-        });
+        //Utils.MakeAnimation(objectScript, positionDurationSec, positionSprites);
     }
 
     private void OnTriggerEnter2D(Collider2D other)

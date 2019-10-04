@@ -168,6 +168,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1deddd26c34395e45a2c0977a2022033, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onBaseSprites:
+  - {fileID: 21300000, guid: ad93827d35d665f4b8bd070b76fda7ab, type: 3}
+  droppedSprites:
+  - {fileID: 21300000, guid: 36c161999f287ef4f87a789f03830e52, type: 3}
+  spritesDurationSec: 1
   grabSprites: []
   grabDurationSec: 1
   positionSprites: []

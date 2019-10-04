@@ -9,6 +9,10 @@ public class PowerUpScript : MonoBehaviour, IDynamicObject
 
     public float powerDuration;
 
+    public float bonusSpeed;
+
+    public float bonusDamage;
+
     public Sprite[] grabSprites;
 
     public float grabDurationSec = 1;
@@ -76,7 +80,7 @@ public class PowerUpScript : MonoBehaviour, IDynamicObject
             var player = other.GetComponent<PlayerScript>();
             if (player.isAlive && player.carriedFlag == null)
             {
-                player.SetPowerUp(this.powerType, this.powerDuration);
+                player.SetPowerUp(this, this.powerDuration);
                 this.Grab();
             }
         }
