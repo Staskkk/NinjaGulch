@@ -50,8 +50,6 @@ public class NinjaAnimationScript : MonoBehaviour
     public Sprite[] attackKatanaRight;
     public Sprite[] attackKatanaBottom;
 
-    public SpriteRenderer powerUpSpriteRenderer;
-
     public Sprite[] immortalitySprites;
 
     public Sprite[] speedUpSprites;
@@ -64,6 +62,8 @@ public class NinjaAnimationScript : MonoBehaviour
 
     public float attackDurationSec;
 
+    public ObjectScript powerUpSpriteObject;
+
     public PlayerControlScript playerControl;
 
     public ObjectScript objectScript;
@@ -72,33 +72,183 @@ public class NinjaAnimationScript : MonoBehaviour
 
     public PlayerAttackScript attackScript;
 
-    private Sprite[][] movement;
+    private Sprite[][][][] sprites;
+
+    private float[] durations;
+
+    private Sprite[][] powerSprites;
 
     private int oldAnim = -1;
 
+    private int oldPowerAnim = -1;
+
+    private enum AnimActionState
+    {
+        Idle = 0,
+        Move = 1,
+        Attack = 2
+    }
+
+    private enum AnimItemState
+    {
+        Hands = 0,
+        Flag = 1,
+        Katana = 2
+    }
+
+    private enum AnimPowerState
+    {
+        None,
+        Immortality,
+        SpeedUp
+    }
+
+    private AnimActionState ActionState
+    {
+        get
+        {
+            if (attackScript.isHitting)
+            {
+                return AnimActionState.Attack;
+            }
+
+            if (playerControl.isIdle)
+            {
+                return AnimActionState.Idle;
+            }
+
+            return AnimActionState.Move;
+        }
+    }
+
+    private AnimItemState ItemState
+    {
+        get
+        {
+            if (playerScript.carriedFlag != null)
+            {
+                return AnimItemState.Flag;
+            }
+
+            if (playerScript.powerUp == PowerUp.Katana)
+            {
+                return AnimItemState.Katana;
+            }
+
+            return AnimItemState.Hands;
+        }
+    }
+
+    private AnimPowerState PowerState
+    {
+        get
+        {
+            if (playerScript.powerUp == PowerUp.Immortality)
+            {
+                return AnimPowerState.Immortality;
+            }
+            else if (playerScript.powerUp == PowerUp.SpeedUp)
+            {
+                return AnimPowerState.SpeedUp;
+            }
+
+            return AnimPowerState.None;
+        }
+    }
+
     void Start()
     {
-        movement = new Sprite[8][];
-        movement[(int)PlayerState.Left] = movementLeft;
-        movement[(int)PlayerState.Top] = movementTop;
-        movement[(int)PlayerState.Right] = movementRight;
-        movement[(int)PlayerState.Bottom] = movementBottom;
-        movement[(int)PlayerState.IdleLeft] = idleLeft;
-        movement[(int)PlayerState.IdleTop] = idleTop;
-        movement[(int)PlayerState.IdleRight] = idleRight;
-        movement[(int)PlayerState.IdleBottom] = idleBottom;
+        sprites = new Sprite[3][][][];
+
+        sprites[(int)AnimActionState.Idle] = new Sprite[3][][];  
+        
+        sprites[(int)AnimActionState.Idle][(int)AnimItemState.Hands] = new Sprite[4][];
+        sprites[(int)AnimActionState.Idle][(int)AnimItemState.Hands][(int)PlayerDirection.Left] = idleLeft;
+        sprites[(int)AnimActionState.Idle][(int)AnimItemState.Hands][(int)PlayerDirection.Top] = idleTop;
+        sprites[(int)AnimActionState.Idle][(int)AnimItemState.Hands][(int)PlayerDirection.Right] = idleRight;
+        sprites[(int)AnimActionState.Idle][(int)AnimItemState.Hands][(int)PlayerDirection.Bottom] = idleBottom;
+
+        sprites[(int)AnimActionState.Idle][(int)AnimItemState.Flag] = new Sprite[4][];
+        sprites[(int)AnimActionState.Idle][(int)AnimItemState.Flag][(int)PlayerDirection.Left] = idleFlagLeft;
+        sprites[(int)AnimActionState.Idle][(int)AnimItemState.Flag][(int)PlayerDirection.Top] = idleFlagTop;
+        sprites[(int)AnimActionState.Idle][(int)AnimItemState.Flag][(int)PlayerDirection.Right] = idleFlagRight;
+        sprites[(int)AnimActionState.Idle][(int)AnimItemState.Flag][(int)PlayerDirection.Bottom] = idleFlagBottom;
+
+        sprites[(int)AnimActionState.Idle][(int)AnimItemState.Katana] = new Sprite[4][];
+        sprites[(int)AnimActionState.Idle][(int)AnimItemState.Katana][(int)PlayerDirection.Left] = idleKatanaLeft;
+        sprites[(int)AnimActionState.Idle][(int)AnimItemState.Katana][(int)PlayerDirection.Top] = idleKatanaTop;
+        sprites[(int)AnimActionState.Idle][(int)AnimItemState.Katana][(int)PlayerDirection.Right] = idleKatanaRight;
+        sprites[(int)AnimActionState.Idle][(int)AnimItemState.Katana][(int)PlayerDirection.Bottom] = idleKatanaBottom;
+
+        sprites[(int)AnimActionState.Move] = new Sprite[3][][];
+
+        sprites[(int)AnimActionState.Move][(int)AnimItemState.Hands] = new Sprite[4][];
+        sprites[(int)AnimActionState.Move][(int)AnimItemState.Hands][(int)PlayerDirection.Left] = movementLeft;
+        sprites[(int)AnimActionState.Move][(int)AnimItemState.Hands][(int)PlayerDirection.Top] = movementTop;
+        sprites[(int)AnimActionState.Move][(int)AnimItemState.Hands][(int)PlayerDirection.Right] = movementRight;
+        sprites[(int)AnimActionState.Move][(int)AnimItemState.Hands][(int)PlayerDirection.Bottom] = movementBottom;
+
+        sprites[(int)AnimActionState.Move][(int)AnimItemState.Flag] = new Sprite[4][];
+        sprites[(int)AnimActionState.Move][(int)AnimItemState.Flag][(int)PlayerDirection.Left] = movementFlagLeft;
+        sprites[(int)AnimActionState.Move][(int)AnimItemState.Flag][(int)PlayerDirection.Top] = movementFlagTop;
+        sprites[(int)AnimActionState.Move][(int)AnimItemState.Flag][(int)PlayerDirection.Right] = movementFlagRight;
+        sprites[(int)AnimActionState.Move][(int)AnimItemState.Flag][(int)PlayerDirection.Bottom] = movementFlagBottom;
+
+        sprites[(int)AnimActionState.Move][(int)AnimItemState.Katana] = new Sprite[4][];
+        sprites[(int)AnimActionState.Move][(int)AnimItemState.Katana][(int)PlayerDirection.Left] = movementKatanaLeft;
+        sprites[(int)AnimActionState.Move][(int)AnimItemState.Katana][(int)PlayerDirection.Top] = movementKatanaTop;
+        sprites[(int)AnimActionState.Move][(int)AnimItemState.Katana][(int)PlayerDirection.Right] = movementKatanaRight;
+        sprites[(int)AnimActionState.Move][(int)AnimItemState.Katana][(int)PlayerDirection.Bottom] = movementKatanaBottom;
+
+        sprites[(int)AnimActionState.Attack] = new Sprite[3][][];
+
+        sprites[(int)AnimActionState.Attack][(int)AnimItemState.Hands] = new Sprite[4][];
+        sprites[(int)AnimActionState.Attack][(int)AnimItemState.Hands][(int)PlayerDirection.Left] = attackLeft;
+        sprites[(int)AnimActionState.Attack][(int)AnimItemState.Hands][(int)PlayerDirection.Top] = attackTop;
+        sprites[(int)AnimActionState.Attack][(int)AnimItemState.Hands][(int)PlayerDirection.Right] = attackRight;
+        sprites[(int)AnimActionState.Attack][(int)AnimItemState.Hands][(int)PlayerDirection.Bottom] = attackBottom;
+
+        sprites[(int)AnimActionState.Attack][(int)AnimItemState.Flag] = new Sprite[4][];
+        sprites[(int)AnimActionState.Attack][(int)AnimItemState.Flag][(int)PlayerDirection.Left] = attackFlagLeft;
+        sprites[(int)AnimActionState.Attack][(int)AnimItemState.Flag][(int)PlayerDirection.Top] = attackFlagTop;
+        sprites[(int)AnimActionState.Attack][(int)AnimItemState.Flag][(int)PlayerDirection.Right] = attackFlagRight;
+        sprites[(int)AnimActionState.Attack][(int)AnimItemState.Flag][(int)PlayerDirection.Bottom] = attackFlagBottom;
+
+        sprites[(int)AnimActionState.Attack][(int)AnimItemState.Katana] = new Sprite[4][];
+        sprites[(int)AnimActionState.Attack][(int)AnimItemState.Katana][(int)PlayerDirection.Left] = attackKatanaLeft;
+        sprites[(int)AnimActionState.Attack][(int)AnimItemState.Katana][(int)PlayerDirection.Top] = attackKatanaTop;
+        sprites[(int)AnimActionState.Attack][(int)AnimItemState.Katana][(int)PlayerDirection.Right] = attackKatanaRight;
+        sprites[(int)AnimActionState.Attack][(int)AnimItemState.Katana][(int)PlayerDirection.Bottom] = attackKatanaBottom;
+
+        durations = new float[3];
+        durations[(int)AnimActionState.Idle] = idleDurationSec;
+        durations[(int)AnimActionState.Move] = movementDurationSec;
+        durations[(int)AnimActionState.Attack] = attackDurationSec;
+
+        powerSprites = new Sprite[3][];
+        powerSprites[(int)AnimPowerState.None] = new Sprite[] { null };
+        powerSprites[(int)AnimPowerState.Immortality] = immortalitySprites;
+        powerSprites[(int)AnimPowerState.SpeedUp] = speedUpSprites;
     }
 
     void Update()
     {
-        if (movement != null)
+        int actionState = (int)this.ActionState;
+        int itemState = (int)this.ItemState;
+        int playerDirection = (int)playerControl.playerDirection;
+        int currentAnim = actionState * 100 + itemState * 10 + playerDirection;
+        if (currentAnim != oldAnim)
         {
-            int currentAnim = (int)playerControl.playerState;
-            if (currentAnim != oldAnim)
-            {
-                Utils.MakeAnimation(objectScript, movementDurationSec, movement[currentAnim]);
-                oldAnim = currentAnim;
-            }
+            Utils.MakeAnimation(objectScript, durations[actionState], sprites[actionState][itemState][playerDirection]);
+            oldAnim = currentAnim;
+        }
+
+        int powerState = (int)this.PowerState;
+        int currentPowerAnim = powerState;
+        if (currentPowerAnim != oldPowerAnim)
+        {
+            Utils.MakeAnimation(powerUpSpriteObject, powerUpDuration, powerSprites[powerState]);
+            oldPowerAnim = currentPowerAnim;
         }
     }
 

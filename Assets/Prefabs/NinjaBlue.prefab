@@ -47,7 +47,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 11, y: 0}
-  m_Size: {x: 14, y: 14}
+  m_Size: {x: 14, y: 10}
   m_Direction: 1
 --- !u!114 &1023561737
 MonoBehaviour:
@@ -62,9 +62,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentPlayer: {fileID: 4002064923176293825}
-  hitDelay: 1
-  preHitDelay: 0.1
+  playerControl: {fileID: 904139659}
+  hitDelay: 0.5
+  preHitDelay: 0.3
   isHitDelay: 0
+  isHitting: 0
 --- !u!1 &904139657
 GameObject:
   m_ObjectHideFlags: 0
@@ -112,8 +114,9 @@ MonoBehaviour:
   keySwitch: 115
   keyRight: 100
   player: {fileID: 4002064923176293825}
-  playerState: 1
+  playerDirection: 1
   playerTurn: 0
+  isIdle: 1
   main: {fileID: 18935161}
 --- !u!1 &1164598237
 GameObject:
@@ -125,6 +128,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1164598238}
   - component: {fileID: 1164598239}
+  - component: {fileID: 5870208460945130762}
   m_Layer: 0
   m_Name: PowerUpSprite
   m_TagString: Untagged
@@ -195,6 +199,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &5870208460945130762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1164598237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74d77c5da72cb8d44b5cc4164a48e02c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 1164598239}
+  sprites: []
+  durationSec: 1
 --- !u!1 &1668664810959455139
 GameObject:
   m_ObjectHideFlags: 0
@@ -262,8 +281,8 @@ Rigidbody2D:
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 1
-  m_Mass: 150.03319
+  m_UseAutoMass: 0
+  m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0
   m_GravityScale: 0
@@ -313,7 +332,7 @@ MonoBehaviour:
   bonusSpeed: 0
   isAlive: 1
   powerUp: 0
-  team: 1
+  team: 0
 --- !u!82 &2903847474356583485
 AudioSource:
   m_ObjectHideFlags: 0
@@ -456,7 +475,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 20, y: 0}
-  m_Size: {x: 32, y: 14}
+  m_Size: {x: 32, y: 10}
   m_Direction: 1
 --- !u!114 &1668664810297113743
 MonoBehaviour:
@@ -737,7 +756,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 810a6d055fc8c65468f96d72a715ad5f, type: 3}
   - {fileID: 21300000, guid: 8d2e2e05a10c65849aa27a88938549d4, type: 3}
   - {fileID: 21300000, guid: 083b93be7f21f1d46a3ec87b682637bf, type: 3}
-  powerUpSpriteRenderer: {fileID: 1164598239}
   immortalitySprites:
   - {fileID: 21300000, guid: 673cd3004a886aa4d8455e7ef72820b7, type: 3}
   speedUpSprites:
@@ -745,7 +763,8 @@ MonoBehaviour:
   powerUpDuration: 1
   idleDurationSec: 1
   movementDurationSec: 0.7
-  attackDurationSec: 1
+  attackDurationSec: 0.6
+  powerUpSpriteObject: {fileID: 5870208460945130762}
   playerControl: {fileID: 904139659}
   objectScript: {fileID: 5616551340360772066}
   playerScript: {fileID: 4002064923176293825}

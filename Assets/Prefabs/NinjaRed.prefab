@@ -76,7 +76,7 @@ PrefabInstance:
     - target: {fileID: 4002064923176293825, guid: 3c62d663dd64e71458217464fd802bc1,
         type: 3}
       propertyPath: team
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 18935161, guid: 3c62d663dd64e71458217464fd802bc1, type: 3}
       propertyPath: m_LocalRotation.z
@@ -103,7 +103,7 @@ PrefabInstance:
       value: 108
       objectReference: {fileID: 0}
     - target: {fileID: 904139659, guid: 3c62d663dd64e71458217464fd802bc1, type: 3}
-      propertyPath: playerState
+      propertyPath: playerDirection
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 904139659, guid: 3c62d663dd64e71458217464fd802bc1, type: 3}

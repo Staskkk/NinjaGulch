@@ -6,17 +6,21 @@ public class PlayerAttackScript : MonoBehaviour
 {
     public PlayerScript currentPlayer;
 
+    public PlayerControlScript playerControl;
+
     public float hitDelay;
 
     public float preHitDelay;
 
     public bool isHitDelay;
 
-    private bool isHitting;
+    public bool isHitting;
 
     private PlayerScript otherPlayer;
 
     private Coroutine hittingCoroutine;
+
+    private PlayerDirection? hitDirection = null;
 
     void Start()
     {
@@ -28,14 +32,29 @@ public class PlayerAttackScript : MonoBehaviour
         {
             MakeHit();
         }
+        else if (isHitting && hitDirection != playerControl.playerDirection)
+        {
+            StopHit();
+        }
     }
 
     public void MakeHit()
     {
         isHitting = true;
+        hitDirection = playerControl.playerDirection;
         hittingCoroutine = StartCoroutine(HittingRoutine());
     }
     
+    public void StopHit()
+    {
+        if (hittingCoroutine != null)
+        {
+            isHitting = false;
+            hitDirection = null;
+            StopCoroutine(hittingCoroutine);
+        }
+    }
+
     private IEnumerator HittingDelayRoutine()
     {
         yield return new WaitForSeconds(hitDelay);
@@ -80,11 +99,7 @@ public class PlayerAttackScript : MonoBehaviour
             if (currentPlayer.Team != player.Team && !currentPlayer.isRangeAttack)
             {
                 this.otherPlayer = null;
-                if (hittingCoroutine != null)
-                {
-                    isHitting = false;
-                    StopCoroutine(hittingCoroutine);
-                }
+                this.StopHit();
             }
         }
     }

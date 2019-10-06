@@ -3,16 +3,12 @@ using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
 
-public enum PlayerState
+public enum PlayerDirection
 {
     Left = 0,
-    Right = 1,
-    Top = 2,
-    Bottom = 3,
-    IdleLeft = 4,
-    IdleRight = 5,
-    IdleTop = 6,
-    IdleBottom = 7
+    Top = 1,
+    Right = 2,
+    Bottom = 3
 }
 
 public enum PlayerTurn

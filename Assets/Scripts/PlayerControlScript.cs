@@ -11,9 +11,11 @@ public class PlayerControlScript : MonoBehaviour
 
     public PlayerScript player;
 
-    public PlayerState playerState;
+    public PlayerDirection playerDirection;
 
     public PlayerTurn playerTurn;
+
+    public bool isIdle;
 
     public Transform main;
 
@@ -35,20 +37,18 @@ public class PlayerControlScript : MonoBehaviour
 
         if (isSwitchHolded || (isLeftHolded && isRightHolded))
         {
-            if ((int)playerState < (int)PlayerState.IdleLeft)
-            {
-                playerState = (PlayerState)((int)(playerState) + 4);
-            }
-
+            isIdle = true;
             movementVector = Vector3.zero;
         } else if (isLeftHolded)
         {
-            playerState = PlayerState.Left;
+            isIdle = false;
+            playerDirection = PlayerDirection.Left;
             movementVector = Vector3.left;
             main.rotation = Quaternion.Euler(0, 0, 180);
         } else if (isRightHolded)
         {
-            playerState = PlayerState.Right;
+            isIdle = false;
+            playerDirection = PlayerDirection.Right;
             movementVector = Vector3.right;
             main.rotation = Quaternion.Euler(0, 0, 0);
         }
@@ -56,13 +56,15 @@ public class PlayerControlScript : MonoBehaviour
         {
             if (playerTurn == PlayerTurn.Up)
             {
-                playerState = PlayerState.Top;
+                isIdle = false;
+                playerDirection = PlayerDirection.Top;
                 movementVector = Vector3.up;
                 main.rotation = Quaternion.Euler(0, 0, 90);
             }
             else
             {
-                playerState = PlayerState.Bottom;
+                isIdle = false;
+                playerDirection = PlayerDirection.Bottom;
                 movementVector = Vector3.down;
                 main.rotation = Quaternion.Euler(0, 0, -90);
             }
