@@ -6,28 +6,18 @@ public class TrapScript : MonoBehaviour
 {
     public float damage = 5f;
 
-    public float activateDurationSec = 1;
-
-    public Sprite[] activateSprites;
-
-    private ObjectScript objectScript;
-
     void Start()
     {
-        objectScript = GetComponent<ObjectScript>();
     }
 
     void Update()
     {      
     }
 
-    public void Activate()
+    public void HitNinja(PlayerScript ninja)
     {
-        Debug.Log($"Trap was activated!");
-        Utils.MakeAnimation(objectScript, activateDurationSec, activateSprites, true, () =>
-        {
-            Utils.MakeAnimation(objectScript, objectScript.durationSec, objectScript.sprites);
-        });
+        Debug.Log($"Trap hit ninja!");
+        ninja.SetDamage(damage, out bool isDied);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -37,7 +27,7 @@ public class TrapScript : MonoBehaviour
             var player = other.GetComponent<PlayerScript>();
             if (player.isAlive)
             {
-                player.SetDamage(damage, out bool isDied);
+                this.HitNinja(player);
             }
         }
     }

@@ -70,7 +70,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e9247ba978689d4a87ac07605244055, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trapScript: {fileID: 7263855788825259206}
+  objectScript: {fileID: 803077116304623105}
+  activateDurationSec: 0.2
+  activateSprites:
+  - {fileID: 21300000, guid: 3eaf210087cf9a34481146d2322ea769, type: 3}
+  - {fileID: 21300000, guid: e1487ce4103534445a2ccbce2a4a1db6, type: 3}
+  - {fileID: 21300000, guid: bf20e8a95ade80949992c32f8df3f2b3, type: 3}
+  - {fileID: 21300000, guid: e0e00e498f1ad384d932d0381974296d, type: 3}
+  - {fileID: 21300000, guid: 2b0c0e26e1fe7344cb640602136d6b25, type: 3}
+  - {fileID: 21300000, guid: bffa22a31b205244a9eab88264fae050, type: 3}
+  - {fileID: 21300000, guid: c4b60d81b1b363042ada573c605ea0bf, type: 3}
+  - {fileID: 21300000, guid: 2c120b8f45b21eb4bbb0c2c2027a260b, type: 3}
+  activeDurationSec: 1
+  activeSprites:
+  - {fileID: 21300000, guid: 2c120b8f45b21eb4bbb0c2c2027a260b, type: 3}
 --- !u!1 &803077116304623107
 GameObject:
   m_ObjectHideFlags: 0
@@ -161,16 +174,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 5
-  activateDurationSec: 0.2
-  activateSprites:
-  - {fileID: 21300000, guid: 3eaf210087cf9a34481146d2322ea769, type: 3}
-  - {fileID: 21300000, guid: e1487ce4103534445a2ccbce2a4a1db6, type: 3}
-  - {fileID: 21300000, guid: bf20e8a95ade80949992c32f8df3f2b3, type: 3}
-  - {fileID: 21300000, guid: e0e00e498f1ad384d932d0381974296d, type: 3}
-  - {fileID: 21300000, guid: 2b0c0e26e1fe7344cb640602136d6b25, type: 3}
-  - {fileID: 21300000, guid: bffa22a31b205244a9eab88264fae050, type: 3}
-  - {fileID: 21300000, guid: c4b60d81b1b363042ada573c605ea0bf, type: 3}
-  - {fileID: 21300000, guid: 2c120b8f45b21eb4bbb0c2c2027a260b, type: 3}
 --- !u!1 &803077116619927665
 GameObject:
   m_ObjectHideFlags: 0
