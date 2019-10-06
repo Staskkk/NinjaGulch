@@ -115,6 +115,86 @@ MonoBehaviour:
   playerState: 1
   playerTurn: 0
   main: {fileID: 18935161}
+--- !u!1 &1164598237
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1164598238}
+  - component: {fileID: 1164598239}
+  m_Layer: 0
+  m_Name: PowerUpSprite
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1164598238
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1164598237}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1668664810959455167}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &1164598239
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1164598237}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 0
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &1668664810959455139
 GameObject:
   m_ObjectHideFlags: 0
@@ -128,7 +208,6 @@ GameObject:
   - component: {fileID: 1668664810959455166}
   - component: {fileID: 5616551340360772066}
   - component: {fileID: 4002064923176293825}
-  - component: {fileID: 1668664810959455138}
   - component: {fileID: 2903847474356583485}
   m_Layer: 0
   m_Name: NinjaBlue
@@ -151,6 +230,8 @@ Transform:
   - {fileID: 18935161}
   - {fileID: 3593831212139978868}
   - {fileID: 904139658}
+  - {fileID: 4973216193851552228}
+  - {fileID: 1164598238}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -182,7 +263,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 1
-  m_Mass: 1
+  m_Mass: 150.03319
   m_LinearDrag: 0
   m_AngularDrag: 0
   m_GravityScale: 0
@@ -219,6 +300,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a255e7e738fed83469de857786232569, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ninjaAnimation: {fileID: 2062790497375807338}
   autoResurrect: 1
   health: 2
   maxHealth: 2
@@ -232,50 +314,6 @@ MonoBehaviour:
   isAlive: 1
   powerUp: 0
   team: 1
---- !u!114 &1668664810959455138
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1668664810959455139}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6a1e36110d305c4b857204ecbfa8fc7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movementLeft:
-  - {fileID: 21300000, guid: 780b8873108412049a11918f9b13cb32, type: 3}
-  - {fileID: 21300000, guid: ef3b5562dc876ce42b33e7b7821e5148, type: 3}
-  - {fileID: 21300000, guid: 780b8873108412049a11918f9b13cb32, type: 3}
-  - {fileID: 21300000, guid: d8472aa691bfaae45a0d817f1cd5c1b9, type: 3}
-  movementTop:
-  - {fileID: 21300000, guid: fcfd6b56cedb27448949ba8a03e66f84, type: 3}
-  - {fileID: 21300000, guid: 252ef30c65162124bb4c5dc607cf48cc, type: 3}
-  - {fileID: 21300000, guid: fcfd6b56cedb27448949ba8a03e66f84, type: 3}
-  - {fileID: 21300000, guid: 06eae7fd90f518742b428f827bb51fb4, type: 3}
-  movementRight:
-  - {fileID: 21300000, guid: 7f5e6ac0e59e4004b8bc10f92bb2de01, type: 3}
-  - {fileID: 21300000, guid: 9436cb350e9be9647b96af8c80871f35, type: 3}
-  - {fileID: 21300000, guid: 7f5e6ac0e59e4004b8bc10f92bb2de01, type: 3}
-  - {fileID: 21300000, guid: e7d0b7ff0807c0847af6d6c89c53763a, type: 3}
-  movementBottom:
-  - {fileID: 21300000, guid: a9dd1fa0d0b4c5449b72d9dd854ecf99, type: 3}
-  - {fileID: 21300000, guid: fd830a9d631f32c409a331b9352a9fad, type: 3}
-  - {fileID: 21300000, guid: a9dd1fa0d0b4c5449b72d9dd854ecf99, type: 3}
-  - {fileID: 21300000, guid: b94ea25e87a7f5e40b8629e174ec838b, type: 3}
-  idleLeft:
-  - {fileID: 21300000, guid: 780b8873108412049a11918f9b13cb32, type: 3}
-  idleTop:
-  - {fileID: 21300000, guid: fcfd6b56cedb27448949ba8a03e66f84, type: 3}
-  idleRight:
-  - {fileID: 21300000, guid: 7f5e6ac0e59e4004b8bc10f92bb2de01, type: 3}
-  idleBottom:
-  - {fileID: 21300000, guid: a9dd1fa0d0b4c5449b72d9dd854ecf99, type: 3}
-  durationSec: 0.7
-  playerControl: {fileID: 904139659}
-  objectScript: {fileID: 5616551340360772066}
-  playerScript: {fileID: 4002064923176293825}
 --- !u!82 &2903847474356583485
 AudioSource:
   m_ObjectHideFlags: 0
@@ -512,3 +550,203 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &9151981137414394280
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4973216193851552228}
+  - component: {fileID: 2062790497375807338}
+  m_Layer: 0
+  m_Name: Animation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4973216193851552228
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9151981137414394280}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1668664810959455167}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2062790497375807338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9151981137414394280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6a1e36110d305c4b857204ecbfa8fc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  idleLeft:
+  - {fileID: 21300000, guid: 02c480493bfa8ab4d8e6b6d9058f59c2, type: 3}
+  idleTop:
+  - {fileID: 21300000, guid: 8a511fcfcbb4ad0498fadf97bd9f3cdc, type: 3}
+  idleRight:
+  - {fileID: 21300000, guid: 2438f5cd3c57d25408320c7b91007300, type: 3}
+  idleBottom:
+  - {fileID: 21300000, guid: d871ae7217f59334793308494b98930c, type: 3}
+  idleFlagLeft:
+  - {fileID: 21300000, guid: c57c96ecf5a8bf646a8079e4323f865f, type: 3}
+  idleFlagTop:
+  - {fileID: 21300000, guid: 078b4617d85f7f141a99029caef44c42, type: 3}
+  idleFlagRight:
+  - {fileID: 21300000, guid: 8ba9d9f12930d07428cacf1bc4b5903f, type: 3}
+  idleFlagBottom:
+  - {fileID: 21300000, guid: 8512b9126a389b041b49c1533f684008, type: 3}
+  idleKatanaLeft:
+  - {fileID: 21300000, guid: 1a05e5e15d863bd4abde99667df7d91b, type: 3}
+  idleKatanaTop:
+  - {fileID: 21300000, guid: 66b9418fbecc8ed448816788d3550c26, type: 3}
+  idleKatanaRight:
+  - {fileID: 21300000, guid: b32187f133219b24fb1d16743fb8ecb4, type: 3}
+  idleKatanaBottom:
+  - {fileID: 21300000, guid: d47a20f5337cc49498f09ef76ffdc46e, type: 3}
+  movementLeft:
+  - {fileID: 21300000, guid: 8284ece600d835343a78bfbae9306b2e, type: 3}
+  - {fileID: 21300000, guid: 02c480493bfa8ab4d8e6b6d9058f59c2, type: 3}
+  - {fileID: 21300000, guid: 8ef3d375887ef5741a4907c6e56eae42, type: 3}
+  - {fileID: 21300000, guid: 02c480493bfa8ab4d8e6b6d9058f59c2, type: 3}
+  movementTop:
+  - {fileID: 21300000, guid: 1906c405e7eb0d94187f9c10c421c4a1, type: 3}
+  - {fileID: 21300000, guid: 8a511fcfcbb4ad0498fadf97bd9f3cdc, type: 3}
+  - {fileID: 21300000, guid: 120448c123b6f3944a307155a54f2567, type: 3}
+  - {fileID: 21300000, guid: 8a511fcfcbb4ad0498fadf97bd9f3cdc, type: 3}
+  movementRight:
+  - {fileID: 21300000, guid: 2a2bbd3ffff39694282690cfdadc9ae2, type: 3}
+  - {fileID: 21300000, guid: 2438f5cd3c57d25408320c7b91007300, type: 3}
+  - {fileID: 21300000, guid: 89e53b89bdce1854ca62773547016912, type: 3}
+  - {fileID: 21300000, guid: 2438f5cd3c57d25408320c7b91007300, type: 3}
+  movementBottom:
+  - {fileID: 21300000, guid: b1d9849e4a6296d43b2605af1f8a9873, type: 3}
+  - {fileID: 21300000, guid: d871ae7217f59334793308494b98930c, type: 3}
+  - {fileID: 21300000, guid: 976cff458d83405439835b2417d2650e, type: 3}
+  - {fileID: 21300000, guid: d871ae7217f59334793308494b98930c, type: 3}
+  movementFlagLeft:
+  - {fileID: 21300000, guid: 646c27413b9e7954595621ab6b66c82d, type: 3}
+  - {fileID: 21300000, guid: c57c96ecf5a8bf646a8079e4323f865f, type: 3}
+  - {fileID: 21300000, guid: 13964064ad4d9d44ea962feb82cb0674, type: 3}
+  - {fileID: 21300000, guid: c57c96ecf5a8bf646a8079e4323f865f, type: 3}
+  movementFlagTop:
+  - {fileID: 21300000, guid: fdea8ec54793825428624363a7eb2e0f, type: 3}
+  - {fileID: 21300000, guid: 078b4617d85f7f141a99029caef44c42, type: 3}
+  - {fileID: 21300000, guid: d6b015cb2d9727442918b83ea5b6f8a7, type: 3}
+  - {fileID: 21300000, guid: 078b4617d85f7f141a99029caef44c42, type: 3}
+  movementFlagRight:
+  - {fileID: 21300000, guid: e79ed377423aef242882cb820dfee4db, type: 3}
+  - {fileID: 21300000, guid: 8ba9d9f12930d07428cacf1bc4b5903f, type: 3}
+  - {fileID: 21300000, guid: a0a66834ecfa53144a4b1a4c809392c7, type: 3}
+  - {fileID: 21300000, guid: 8ba9d9f12930d07428cacf1bc4b5903f, type: 3}
+  movementFlagBottom:
+  - {fileID: 21300000, guid: f336891e850c07a439b196eb6904106a, type: 3}
+  - {fileID: 21300000, guid: 8512b9126a389b041b49c1533f684008, type: 3}
+  - {fileID: 21300000, guid: 67b136b8b456d3142822d741e85ee33a, type: 3}
+  - {fileID: 21300000, guid: 8512b9126a389b041b49c1533f684008, type: 3}
+  movementKatanaLeft:
+  - {fileID: 21300000, guid: 8f0e1b0d29e16d84eac0b7e2b7bfcf61, type: 3}
+  - {fileID: 21300000, guid: 1a05e5e15d863bd4abde99667df7d91b, type: 3}
+  - {fileID: 21300000, guid: c264132f613a76046a4a0e5405109d33, type: 3}
+  - {fileID: 21300000, guid: 1a05e5e15d863bd4abde99667df7d91b, type: 3}
+  movementKatanaTop:
+  - {fileID: 21300000, guid: c039a555186db8c418788bc3850bcff0, type: 3}
+  - {fileID: 21300000, guid: 66b9418fbecc8ed448816788d3550c26, type: 3}
+  - {fileID: 21300000, guid: fe06cd0b0114fae4fba0900bfa57a6b0, type: 3}
+  - {fileID: 21300000, guid: 66b9418fbecc8ed448816788d3550c26, type: 3}
+  movementKatanaRight:
+  - {fileID: 21300000, guid: 46f8a0057b342ea44aa7e5a15b98f5e4, type: 3}
+  - {fileID: 21300000, guid: b32187f133219b24fb1d16743fb8ecb4, type: 3}
+  - {fileID: 21300000, guid: 60d4daa00e912864cacc4ae003b4cd5d, type: 3}
+  - {fileID: 21300000, guid: b32187f133219b24fb1d16743fb8ecb4, type: 3}
+  movementKatanaBottom:
+  - {fileID: 21300000, guid: 2bc1198f46eec184b9729fbae4730c38, type: 3}
+  - {fileID: 21300000, guid: d47a20f5337cc49498f09ef76ffdc46e, type: 3}
+  - {fileID: 21300000, guid: 23880fe26edfe5241b355b0a0ad47c32, type: 3}
+  - {fileID: 21300000, guid: d47a20f5337cc49498f09ef76ffdc46e, type: 3}
+  attackLeft:
+  - {fileID: 21300000, guid: 7f86225f62f861142b56ca67f8be7d19, type: 3}
+  - {fileID: 21300000, guid: 64eb57c493d922f4c8c56d3ace44a3c2, type: 3}
+  - {fileID: 21300000, guid: 285ecce3915cdd142ba880cc2f8d59fc, type: 3}
+  - {fileID: 21300000, guid: 822297f8253f2c64590ef335c7aac3c7, type: 3}
+  attackTop:
+  - {fileID: 21300000, guid: 7cd740ca4cd144b43a9bd68f0193ae5c, type: 3}
+  - {fileID: 21300000, guid: 4e2a7a808f4e2074e8d0a6d790c8ef85, type: 3}
+  - {fileID: 21300000, guid: d048182a9c8089b40a287e82eb4a1770, type: 3}
+  - {fileID: 21300000, guid: 3ad0065c3d55a49449bf5b6b660cc15d, type: 3}
+  attackRight:
+  - {fileID: 21300000, guid: 4a5f48235c7422a488da828879df71c7, type: 3}
+  - {fileID: 21300000, guid: 00332e14513e5594ca2bd105ea4846c1, type: 3}
+  - {fileID: 21300000, guid: 759460c7ad38cff448136fd220394e2c, type: 3}
+  - {fileID: 21300000, guid: 20173be835b17eb4b87e98a97358788c, type: 3}
+  attackBottom:
+  - {fileID: 21300000, guid: e48732f67c26e9740bd5fddf1b7790a4, type: 3}
+  - {fileID: 21300000, guid: 9ae0931745440c148a9074382ab19b72, type: 3}
+  - {fileID: 21300000, guid: d2951d27d5b651b4185f81aae72f6474, type: 3}
+  - {fileID: 21300000, guid: a1b1849e7873cc5428f7eb8ea2d8e6ed, type: 3}
+  attackFlagLeft:
+  - {fileID: 21300000, guid: 16cc61adb91ad7a4fa211ca2b9e08e04, type: 3}
+  - {fileID: 21300000, guid: bb06aa1d2cc026546b44ada25365f63b, type: 3}
+  - {fileID: 21300000, guid: d0cae8e2bf8ff9f4b914e3b9b94cf14d, type: 3}
+  - {fileID: 21300000, guid: 6dc46159855fff44f8e1955aefdd427e, type: 3}
+  attackFlagTop:
+  - {fileID: 21300000, guid: 1e8138dc186e712419662cbf96e730c7, type: 3}
+  - {fileID: 21300000, guid: 4cf7ccab2656a6342b0be7314f618b17, type: 3}
+  - {fileID: 21300000, guid: 554ae2c2733d85248a2d25c00ac5b5da, type: 3}
+  - {fileID: 21300000, guid: 6841ba5e327da4746b417b895e1a06ed, type: 3}
+  attackFlagRight:
+  - {fileID: 21300000, guid: 3b2d19cc3e96ef14ba961ce579c509d2, type: 3}
+  - {fileID: 21300000, guid: f75e03cd685e16f468602787183f9e3c, type: 3}
+  - {fileID: 21300000, guid: 33f30177bc539ae409633516e17b9a89, type: 3}
+  - {fileID: 21300000, guid: 076c5f0c5b6e3714cbdc5e4edc4b90f6, type: 3}
+  attackFlagBottom:
+  - {fileID: 21300000, guid: 17b5d4aa0845be84bbaf22bddd45f86b, type: 3}
+  - {fileID: 21300000, guid: 611174dd4d0084e4fa6c04d8c2eccec5, type: 3}
+  - {fileID: 21300000, guid: 1fb60b9f8ec68524c963b7badf03c077, type: 3}
+  - {fileID: 21300000, guid: 7690ba2b841d03242bb65613fa22b2c9, type: 3}
+  attackKatanaLeft:
+  - {fileID: 21300000, guid: 42183e2c345f30245b69f7925ddc751e, type: 3}
+  - {fileID: 21300000, guid: 5ebc75af113e8d740956fd62fa60f44b, type: 3}
+  - {fileID: 21300000, guid: e9255c6ba3b1cca4b9b80fb2626bdff2, type: 3}
+  - {fileID: 21300000, guid: 4042aba197da4394c9531c53d5ba9de9, type: 3}
+  attackKatanaTop:
+  - {fileID: 21300000, guid: e3a68d568baf1b14685ca2b9eab118fe, type: 3}
+  - {fileID: 21300000, guid: 9023b7aad87242a45bf4f42ad2f5a1a5, type: 3}
+  - {fileID: 21300000, guid: 46fb2b8b8b3cb664e900dd533265804a, type: 3}
+  - {fileID: 21300000, guid: 8d234b12b0eacb54d8871cf5b57d5c03, type: 3}
+  attackKatanaRight:
+  - {fileID: 21300000, guid: 51a80980e5a3dcc4096d0969c0072ebf, type: 3}
+  - {fileID: 21300000, guid: 4ad07fae5afea794182e9c7474670600, type: 3}
+  - {fileID: 21300000, guid: 3374afbeeb72b9b49a8e1acda0f24e30, type: 3}
+  - {fileID: 21300000, guid: 0ba2cfe81fa83e441a923d2eb490bb2d, type: 3}
+  attackKatanaBottom:
+  - {fileID: 21300000, guid: 6f486e9cd2e336a4db1ec1b4c6528d28, type: 3}
+  - {fileID: 21300000, guid: 810a6d055fc8c65468f96d72a715ad5f, type: 3}
+  - {fileID: 21300000, guid: 8d2e2e05a10c65849aa27a88938549d4, type: 3}
+  - {fileID: 21300000, guid: 083b93be7f21f1d46a3ec87b682637bf, type: 3}
+  powerUpSpriteRenderer: {fileID: 1164598239}
+  immortalitySprites:
+  - {fileID: 21300000, guid: 673cd3004a886aa4d8455e7ef72820b7, type: 3}
+  speedUpSprites:
+  - {fileID: 21300000, guid: 8eeb6d40d5d069540863dd36217dcaf7, type: 3}
+  powerUpDuration: 1
+  idleDurationSec: 1
+  movementDurationSec: 0.7
+  attackDurationSec: 1
+  playerControl: {fileID: 904139659}
+  objectScript: {fileID: 5616551340360772066}
+  playerScript: {fileID: 4002064923176293825}
+  attackScript: {fileID: 1023561737}

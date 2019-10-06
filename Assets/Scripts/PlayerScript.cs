@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class PlayerScript : MonoBehaviour, IDynamicObject
 {
+    public NinjaAnimationScript ninjaAnimation;
+
     public bool autoResurrect = true;
 
     public float health;
@@ -38,8 +40,6 @@ public class PlayerScript : MonoBehaviour, IDynamicObject
         set { team = value; }
     }
 
-    private NinjaAnimationScript ninjaAnimation;
-
     private Coroutine powerUpCoroutine;
 
     void Start()
@@ -53,7 +53,6 @@ public class PlayerScript : MonoBehaviour, IDynamicObject
     public void Init()
     {
         Debug.Log($"{this.Team} ninja was created!");
-        ninjaAnimation = GetComponent<NinjaAnimationScript>();
         isAlive = true;
         health = maxHealth;
         carriedFlag = null;
