@@ -14,9 +14,13 @@ public class GameManagerScript : MonoBehaviour
 
     public TextMeshProUGUI[] scoreTexts;
 
-    public GameObject ninja;
+    public GameObject ninjaBlue;
 
-    public GameObject flag;
+    public GameObject ninjaRed;
+
+    public GameObject flagBlue;
+
+    public GameObject flagRed;
 
     public GameObject powerUp;
 
@@ -99,10 +103,10 @@ public class GameManagerScript : MonoBehaviour
     {
         GameOver();
         teamScores = new float[2];
-        CreateNinja(Team.Red);
         CreateNinja(Team.Blue);
-        CreateGameObject(flag, flagStartPoints[(int)Team.Red], Team.Red);
-        CreateGameObject(flag, flagStartPoints[(int)Team.Blue], Team.Blue);
+        CreateNinja(Team.Red);
+        CreateGameObject(flagBlue, flagStartPoints[(int)Team.Blue]);
+        CreateGameObject(flagRed, flagStartPoints[(int)Team.Red]);
         powerUpCoroutine = StartCoroutine(PowerUpGenerator());
         if (!isEndless)
         {
@@ -112,11 +116,11 @@ public class GameManagerScript : MonoBehaviour
     
     public GameObject CreateNinja(Team team)
     {
-        return CreateGameObject(ninja, ninjaStartPoints[(int)team], team,
+        var ninja = team == Team.Blue ? ninjaBlue : ninjaRed;
+        return CreateGameObject(ninja, ninjaStartPoints[(int)team],
             (obj) =>
             {
                 var playerObj = obj.GetComponent<PlayerScript>();
-                playerObj.playerControls[(int)team].enabled = true;
                 playerObj.speed += extraSpeed;
             });
     }
@@ -158,7 +162,7 @@ public class GameManagerScript : MonoBehaviour
                 Destroy(powerUpObj);
             }
 
-            powerUpObj = CreateGameObject(powerUp, powerUpStartPoint, Team.None,
+            powerUpObj = CreateGameObject(powerUp, powerUpStartPoint,
                 (obj) =>
                 {
                     int powerUpCount = System.Enum.GetNames(typeof(PowerUp)).Length;
@@ -173,14 +177,13 @@ public class GameManagerScript : MonoBehaviour
         }
     }
 
-    private GameObject CreateGameObject(GameObject prefab, Transform startPoint, Team team, SetupParamsFunc setupParamsFunc = null)
+    private GameObject CreateGameObject(GameObject prefab, Transform startPoint, SetupParamsFunc setupParamsFunc = null)
     {
         var obj = Instantiate(prefab, new Vector3(startPoint.position.x, startPoint.position.y, prefab.transform.position.z), Quaternion.identity, map);
         var dynObj = obj.GetComponent<IDynamicObject>();
-        dynObj.Team = team;
         if (obj.CompareTag("Player"))
         {
-            ninjas[(int)team] = obj.GetComponent<PlayerScript>();
+            ninjas[(int)dynObj.Team] = obj.GetComponent<PlayerScript>();
         }
 
         setupParamsFunc?.Invoke(obj);

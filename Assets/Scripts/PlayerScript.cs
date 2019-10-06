@@ -6,10 +6,6 @@ using UnityEngine.UI;
 
 public class PlayerScript : MonoBehaviour, IDynamicObject
 {
-    public PlayerControlScript[] playerControls;
-
-    //public Text[] playerHealthTexts;
-
     public bool autoResurrect = true;
 
     public float health;
@@ -34,7 +30,13 @@ public class PlayerScript : MonoBehaviour, IDynamicObject
 
     public PowerUp powerUp;
 
-    public Team Team { get; set; }
+    public Team team;
+
+    public Team Team
+    {
+        get { return team; }
+        set { team = value; }
+    }
 
     private NinjaAnimationScript ninjaAnimation;
 
@@ -42,7 +44,6 @@ public class PlayerScript : MonoBehaviour, IDynamicObject
 
     void Start()
     {
-        //playerHealthTexts[(int)Team].text = Mathf.RoundToInt(health).ToString();
     }
 
     void Update()

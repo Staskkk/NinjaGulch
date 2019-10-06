@@ -16,18 +16,18 @@ public class NinjaAnimationScript : MonoBehaviour
 
     public float durationSec = 1;
 
-    private PlayerControlScript playerControl;
+    public PlayerControlScript playerControl;
+
+    public ObjectScript objectScript;
+
+    public PlayerScript playerScript;
 
     private Sprite[][] movement;
-
-    private ObjectScript objectScript;
 
     private int oldAnim = -1;
 
     void Start()
     {
-        playerControl = GetComponentsInChildren<PlayerControlScript>().FirstOrDefault(elem => elem.enabled);
-        objectScript = GetComponent<ObjectScript>();
         movement = new Sprite[8][];
         movement[(int)PlayerState.Left] = movementLeft;
         movement[(int)PlayerState.Top] = movementTop;

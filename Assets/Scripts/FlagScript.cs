@@ -23,7 +23,13 @@ public class FlagScript : MonoBehaviour, IDynamicObject
 
     public bool isDropped;
 
-    public Team Team { get; set; }
+    public Team team;
+
+    public Team Team
+    {
+        get { return team; }
+        set { team = value; }
+    }
 
     private ObjectScript objectScript;
 

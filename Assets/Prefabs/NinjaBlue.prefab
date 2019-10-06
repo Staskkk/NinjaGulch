@@ -76,7 +76,7 @@ GameObject:
   - component: {fileID: 904139658}
   - component: {fileID: 904139659}
   m_Layer: 0
-  m_Name: PlayerControl1
+  m_Name: PlayerControl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -103,7 +103,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 904139657}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5defcd436a81fc34f9ea14e3beda431a, type: 3}
   m_Name: 
@@ -114,56 +114,6 @@ MonoBehaviour:
   player: {fileID: 4002064923176293825}
   playerState: 1
   playerTurn: 0
-  main: {fileID: 18935161}
---- !u!1 &1088491790
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1088491791}
-  - component: {fileID: 1088491792}
-  m_Layer: 0
-  m_Name: PlayerControl2
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1088491791
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1088491790}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1668664810959455167}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1088491792
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1088491790}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5defcd436a81fc34f9ea14e3beda431a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  keyLeft: 106
-  keySwitch: 107
-  keyRight: 108
-  player: {fileID: 4002064923176293825}
-  playerState: 0
-  playerTurn: 1
   main: {fileID: 18935161}
 --- !u!1 &1668664810959455139
 GameObject:
@@ -181,7 +131,7 @@ GameObject:
   - component: {fileID: 1668664810959455138}
   - component: {fileID: 2903847474356583485}
   m_Layer: 0
-  m_Name: Ninja
+  m_Name: NinjaBlue
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -201,7 +151,6 @@ Transform:
   - {fileID: 18935161}
   - {fileID: 3593831212139978868}
   - {fileID: 904139658}
-  - {fileID: 1088491791}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -256,7 +205,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 5008338643953373960}
   sprites:
-  - {fileID: 21300000, guid: 7f5e6ac0e59e4004b8bc10f92bb2de01, type: 3}
+  - {fileID: 21300000, guid: 2438f5cd3c57d25408320c7b91007300, type: 3}
   durationSec: 1
 --- !u!114 &4002064923176293825
 MonoBehaviour:
@@ -270,9 +219,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a255e7e738fed83469de857786232569, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerControls:
-  - {fileID: 904139659}
-  - {fileID: 1088491792}
   autoResurrect: 1
   health: 2
   maxHealth: 2
@@ -285,6 +231,7 @@ MonoBehaviour:
   bonusSpeed: 0
   isAlive: 1
   powerUp: 0
+  team: 1
 --- !u!114 &1668664810959455138
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -326,6 +273,9 @@ MonoBehaviour:
   idleBottom:
   - {fileID: 21300000, guid: a9dd1fa0d0b4c5449b72d9dd854ecf99, type: 3}
   durationSec: 0.7
+  playerControl: {fileID: 904139659}
+  objectScript: {fileID: 5616551340360772066}
+  playerScript: {fileID: 4002064923176293825}
 --- !u!82 &2903847474356583485
 AudioSource:
   m_ObjectHideFlags: 0
@@ -551,12 +501,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 7f5e6ac0e59e4004b8bc10f92bb2de01, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2438f5cd3c57d25408320c7b91007300, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 5.12, y: 2.56}
+  m_Size: {x: 16, y: 16}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
