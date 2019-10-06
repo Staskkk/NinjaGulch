@@ -123,6 +123,11 @@ public class PlayerScript : MonoBehaviour, IDynamicObject
     {
         this.powerUp = powerUpScript?.powerType ?? PowerUp.None;
         Debug.Log($"{this.Team} ninja gets power-up {this.powerUp}, duration: {powerDuration}!");
+        if (powerUpCoroutine != null)
+        {
+            StopCoroutine(powerUpCoroutine);
+        }
+
         switch (this.powerUp)
         {
             case PowerUp.SpeedUp:
@@ -147,11 +152,6 @@ public class PlayerScript : MonoBehaviour, IDynamicObject
                 bonusDamage = 0;
                 isRangeAttack = false;
                 isImmortal = false;
-                if (powerUpCoroutine != null)
-                {
-                    StopCoroutine(powerUpCoroutine);
-                }
-
                 break;
         }
 

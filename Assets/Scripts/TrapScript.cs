@@ -37,7 +37,6 @@ public class TrapScript : MonoBehaviour
             var player = other.GetComponent<PlayerScript>();
             if (player.isAlive)
             {
-                this.Activate();
                 player.SetDamage(damage, out bool isDied);
             }
         }

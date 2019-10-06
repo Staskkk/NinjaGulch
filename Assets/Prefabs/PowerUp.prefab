@@ -154,7 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 3564227983907547987}
   sprites:
-  - {fileID: 21300000, guid: d0886eb89b8c1334a97172dee2b67b2f, type: 3}
+  - {fileID: 21300000, guid: c95e042a342bc5c498ec27ba81c3222e, type: 3}
   durationSec: 1
 --- !u!114 &9097345276918082619
 MonoBehaviour:
@@ -169,7 +169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   powerType: 0
-  powerDuration: 30
+  powerDuration: 15
   bonusSpeed: 25
   bonusDamage: 1
   grabSprites: []

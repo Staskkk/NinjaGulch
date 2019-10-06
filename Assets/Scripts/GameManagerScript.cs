@@ -28,6 +28,8 @@ public class GameManagerScript : MonoBehaviour
 
     public Transform powerUpStartPoint;
 
+    public float powerUpPreAppearDelay;
+
     public float powerUpGenerateDelay;
 
     public float ninjaEliminationScore;
@@ -146,6 +148,9 @@ public class GameManagerScript : MonoBehaviour
 
     private IEnumerator PowerUpGenerator()
     {
+        var powerUps = new PowerUp[] { PowerUp.Katana, PowerUp.SpeedUp, PowerUp.Immortality };
+        int curPowerIndex = 0;
+        yield return new WaitForSeconds(powerUpPreAppearDelay);
         while (true)
         {
             if (powerUpObj != null)
@@ -157,7 +162,12 @@ public class GameManagerScript : MonoBehaviour
                 (obj) =>
                 {
                     int powerUpCount = System.Enum.GetNames(typeof(PowerUp)).Length;
-                    obj.GetComponent<PowerUpScript>().powerType = (PowerUp)Random.Range(1, powerUpCount - 1);
+                    obj.GetComponent<PowerUpScript>().powerType = powerUps[curPowerIndex]; // (PowerUp)Random.Range(1, powerUpCount - 1);
+                    curPowerIndex++;
+                    if (curPowerIndex >= powerUps.Length)
+                    {
+                        curPowerIndex = 0;
+                    }
                 });
             yield return new WaitForSeconds(powerUpGenerateDelay);
         }

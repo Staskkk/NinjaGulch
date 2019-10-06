@@ -77,11 +77,16 @@ public static class Utils
                 curSprite++;
                 if (curSprite == sprites.Length)
                 {
+                    if (playOnce)
+                    {
+                        break;
+                    }
+
                     curSprite = 0;
                 }
 
                 yield return new WaitForSeconds(durationSec / sprites.Length);
-            } while (!playOnce);
+            } while (true);
         }
 
         nextAction?.Invoke();
