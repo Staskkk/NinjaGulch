@@ -656,7 +656,7 @@ MonoBehaviour:
   powerUpPreAppearDelay: 10
   powerUpGenerateDelay: 30
   ninjaEliminationScore: 3
-  flagConveyScore: 10
+  flagConveyScore: 9
   isEndless: 0
   gameTimeoutSec: 120
   rushModeTimeSec: 20
