@@ -320,6 +320,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ninjaAnimation: {fileID: 2062790497375807338}
+  playerAttack: {fileID: 1023561737}
   autoResurrect: 1
   health: 2
   maxHealth: 2

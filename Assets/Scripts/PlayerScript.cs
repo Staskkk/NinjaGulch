@@ -8,6 +8,8 @@ public class PlayerScript : MonoBehaviour, IDynamicObject
 {
     public NinjaAnimationScript ninjaAnimation;
 
+    public PlayerAttackScript playerAttack;
+
     public bool autoResurrect = true;
 
     public float health;
@@ -47,7 +49,27 @@ public class PlayerScript : MonoBehaviour, IDynamicObject
     }
 
     void Update()
-    { 
+    {
+        if (!this.isAlive && !playerAttack.isHitting)
+        {
+            this.Die();
+        }
+    }
+
+    public void Die()
+    {
+        Debug.Log($"{this.Team} ninja died!");
+        if (carriedFlag != null)
+        {
+            carriedFlag.Drop(transform.position);
+            carriedFlag = null;
+        }
+
+        Object.Destroy(gameObject);
+        if (autoResurrect)
+        {
+            this.Resurrect();
+        }
     }
 
     public void Init()
@@ -91,26 +113,15 @@ public class PlayerScript : MonoBehaviour, IDynamicObject
         if (health <= 0)
         {
             isDied = true;
-            Die();
+            SetDeathCondition();
         }
     }
 
-    public void Die()
+    public void SetDeathCondition()
     {
-        Debug.Log($"{this.Team} ninja died!");
+        Debug.Log($"{this.Team} ninja in death condition!");
         this.isAlive = false;
         ninjaAnimation.DieAnimation();
-        if (carriedFlag != null)
-        {
-            carriedFlag.Drop(transform.position);
-            carriedFlag = null;
-        }
-
-        Object.Destroy(gameObject);
-        if (autoResurrect)
-        {
-            this.Resurrect();
-        }
     }
 
     public void Resurrect()

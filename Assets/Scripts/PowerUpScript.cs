@@ -28,7 +28,6 @@ public class PowerUpScript : MonoBehaviour, IDynamicObject
 
     public float powerUpsDurationSec;
 
-
     public Team Team { get; set; } = Team.None;
 
     private ObjectScript objectScript;
