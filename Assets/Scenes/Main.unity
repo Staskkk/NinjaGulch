@@ -659,7 +659,7 @@ MonoBehaviour:
   flagConveyScore: 9
   isEndless: 0
   gameTimeoutSec: 120
-  rushModeTimeSec: 20
+  rushModeTimeSec: 30
   isRushMode: 0
   rushModeExtraSpeed: 50
 --- !u!1 &341387429

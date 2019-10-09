@@ -329,7 +329,7 @@ MonoBehaviour:
   carriedFlag: {fileID: 0}
   isImmortal: 0
   isRangeAttack: 0
-  speed: 25
+  speed: 30
   bonusSpeed: 0
   isAlive: 1
   powerUp: 0
