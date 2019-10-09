@@ -113,9 +113,6 @@ public class FlagScript : MonoBehaviour, IDynamicObject
                     if (this.isDropped)
                     {
                         this.Return();
-                    } else if (player.carriedFlag != null)
-                    {
-                        player.ConveyFlag();
                     }
                 }
             }
