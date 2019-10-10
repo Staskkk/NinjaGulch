@@ -25,6 +25,11 @@ public class PlayerControlScript : MonoBehaviour
 
     void Update()
     {
+        if (!player.isAlive)
+        {
+            return;
+        }
+
         bool isLeftHolded = Input.GetKey(keyLeft);
         bool isRightHolded = Input.GetKey(keyRight);
         bool isSwitchHolded = Input.GetKey(keySwitch);

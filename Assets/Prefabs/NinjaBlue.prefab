@@ -325,6 +325,7 @@ MonoBehaviour:
   autoResurrect: 1
   health: 2
   maxHealth: 2
+  ressurectDelay: 0.6
   damage: 1
   bonusDamage: 0
   carriedFlag: {fileID: 0}
@@ -863,8 +864,12 @@ MonoBehaviour:
   - {fileID: 21300000, guid: a22a87abaf22e244caf12c1454fca50f, type: 3}
   playerTurnDownSprites:
   - {fileID: 21300000, guid: 24d8fcedd99f9844fb38a8a74cafcd7b, type: 3}
+  dieSprites:
+  - {fileID: 21300000, guid: 28fabe5c72314e44790eeca911caeab2, type: 3}
   playerTurnDurationSec: 1
   attackDurationSec: 0.6
+  getDamagedDurationSec: 0.6
+  dieDuration: 0.6
   movementAnimSpeedRatio: 21
   powerUpSpriteObject: {fileID: 5870208460945130762}
   playerTurnObject: {fileID: 4280072140886216497}

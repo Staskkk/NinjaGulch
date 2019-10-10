@@ -110,6 +110,18 @@ PrefabInstance:
       propertyPath: playerTurn
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8624075118329515224, guid: 3c62d663dd64e71458217464fd802bc1,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 24d8fcedd99f9844fb38a8a74cafcd7b,
+        type: 3}
+    - target: {fileID: 4280072140886216497, guid: 3c62d663dd64e71458217464fd802bc1,
+        type: 3}
+      propertyPath: sprites.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: 24d8fcedd99f9844fb38a8a74cafcd7b,
+        type: 3}
     - target: {fileID: 2062790497375807338, guid: 3c62d663dd64e71458217464fd802bc1,
         type: 3}
       propertyPath: idleLeft.Array.data[0]
@@ -758,23 +770,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 5c80cabb9d9775e469e106d060d67b81,
         type: 3}
+    - target: {fileID: 2062790497375807338, guid: 3c62d663dd64e71458217464fd802bc1,
+        type: 3}
+      propertyPath: dieSprites.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: 89ae85b29303b774ca5f58481cc49421,
+        type: 3}
     - target: {fileID: 5008338643953373960, guid: 3c62d663dd64e71458217464fd802bc1,
         type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: b3b7d98b09080ef4c8fee9993b78d6d7,
-        type: 3}
-    - target: {fileID: 8624075118329515224, guid: 3c62d663dd64e71458217464fd802bc1,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 24d8fcedd99f9844fb38a8a74cafcd7b,
-        type: 3}
-    - target: {fileID: 4280072140886216497, guid: 3c62d663dd64e71458217464fd802bc1,
-        type: 3}
-      propertyPath: sprites.Array.data[0]
-      value: 
-      objectReference: {fileID: 21300000, guid: 24d8fcedd99f9844fb38a8a74cafcd7b,
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c62d663dd64e71458217464fd802bc1, type: 3}

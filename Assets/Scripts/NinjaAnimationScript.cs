@@ -58,9 +58,15 @@ public class NinjaAnimationScript : MonoBehaviour
 
     public Sprite[] playerTurnDownSprites;
 
+    public Sprite[] dieSprites;
+
     public float playerTurnDurationSec;
 
     public float attackDurationSec;
+
+    public float getDamagedDurationSec;
+
+    public float dieDuration;
 
     public float movementAnimSpeedRatio;
 
@@ -89,6 +95,8 @@ public class NinjaAnimationScript : MonoBehaviour
     private PlayerTurn? oldPlayerTurn = null;
 
     private float oldPlayerSpeed = -1;
+
+    private Coroutine damageCoroutine;
 
     private enum AnimActionState
     {
@@ -240,6 +248,11 @@ public class NinjaAnimationScript : MonoBehaviour
 
     void Update()
     {
+        if (!this.playerScript.isAlive)
+        {
+            return;
+        }
+
         int actionState = (int)this.ActionState;
         int itemState = (int)this.ItemState;
         int playerDirection = (int)playerControl.playerDirection;
@@ -286,12 +299,31 @@ public class NinjaAnimationScript : MonoBehaviour
 
     public void DamageAnimation(float damage)
     {
+        if (this.playerScript.isAlive)
+        {
+            this.damageCoroutine = StartCoroutine(DamageAnimCoroutine(damage));
+        }
+    }
 
+    private IEnumerator DamageAnimCoroutine(float damage)
+    {
+        float damageDelay = getDamagedDurationSec / 6;
+        for (int i = 0; i < 6; i++)
+        {
+            objectScript.spriteRenderer.enabled = !objectScript.spriteRenderer.enabled;
+            yield return new WaitForSeconds(damageDelay);
+        }
     }
 
     public void DieAnimation()
     {
-        objectScript.spriteRenderer.enabled = false;
+        if (this.damageCoroutine != null)
+        {
+            StopCoroutine(this.damageCoroutine);
+        }
+
+        objectScript.spriteRenderer.enabled = true;
+        Utils.MakeAnimation(objectScript, dieDuration, dieSprites);
     }
 
     public void ResurrectAnimation()

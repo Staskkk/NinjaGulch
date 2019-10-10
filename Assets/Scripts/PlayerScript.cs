@@ -16,6 +16,8 @@ public class PlayerScript : MonoBehaviour, IDynamicObject
 
     public float maxHealth;
 
+    public float ressurectDelay;
+
     public float damage;
 
     public float bonusDamage;
@@ -31,6 +33,8 @@ public class PlayerScript : MonoBehaviour, IDynamicObject
     public float bonusSpeed;
 
     public bool isAlive = true;
+
+    public bool isInDeathCondition;
 
     public PowerUp powerUp;
 
@@ -57,27 +61,16 @@ public class PlayerScript : MonoBehaviour, IDynamicObject
 
     void Update()
     {
-        if (!this.isAlive && !playerAttack.isHitting)
+        if (this.isInDeathCondition && !playerAttack.isHitting)
         {
             this.Die();
         }
     }
 
-    public void Die()
+    public void Destroy()
     {
-        Debug.Log($"{this.Team} ninja died!");
-        if (carriedFlag != null)
-        {
-            this.speed += this.carriedFlag.playerSpeedReduceWhenGrabbed;
-            carriedFlag.Drop(transform.position);
-            carriedFlag = null;
-        }
-
+        Debug.Log($"{this.Team} ninja object was destroyed!");
         Object.Destroy(gameObject);
-        if (autoResurrect)
-        {
-            this.Resurrect();
-        }
     }
 
     public void Init()
@@ -123,15 +116,33 @@ public class PlayerScript : MonoBehaviour, IDynamicObject
         if (health <= 0)
         {
             isDied = true;
-            SetDeathCondition();
+            isInDeathCondition = true;
         }
     }
 
-    public void SetDeathCondition()
+    public void Die()
     {
-        Debug.Log($"{this.Team} ninja in death condition!");
+        Debug.Log($"{this.Team} ninja died!");
         this.isAlive = false;
+        if (carriedFlag != null)
+        {
+            this.speed += this.carriedFlag.playerSpeedReduceWhenGrabbed;
+            carriedFlag.Drop(transform.position);
+            carriedFlag = null;
+        }
+
         ninjaAnimation.DieAnimation();
+        StartCoroutine(DieCoroutine());
+    }
+
+    private IEnumerator DieCoroutine()
+    {
+        yield return new WaitForSeconds(ressurectDelay);
+        this.Destroy();
+        if (autoResurrect)
+        {
+            this.Resurrect();
+        }
     }
 
     public void Resurrect()
