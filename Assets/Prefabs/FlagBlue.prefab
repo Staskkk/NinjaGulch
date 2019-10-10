@@ -179,4 +179,5 @@ MonoBehaviour:
   positionDurationSec: 1
   carrierPlayer: {fileID: 0}
   isDropped: 0
+  playerSpeedReduceWhenGrabbed: 3
   team: 0

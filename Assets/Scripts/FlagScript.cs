@@ -23,6 +23,8 @@ public class FlagScript : MonoBehaviour, IDynamicObject
 
     public bool isDropped;
 
+    public float playerSpeedReduceWhenGrabbed;
+
     public Team team;
 
     public Team Team

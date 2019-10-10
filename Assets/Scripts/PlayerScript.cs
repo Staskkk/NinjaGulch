@@ -68,6 +68,7 @@ public class PlayerScript : MonoBehaviour, IDynamicObject
         Debug.Log($"{this.Team} ninja died!");
         if (carriedFlag != null)
         {
+            this.speed += this.carriedFlag.playerSpeedReduceWhenGrabbed;
             carriedFlag.Drop(transform.position);
             carriedFlag = null;
         }
@@ -94,12 +95,14 @@ public class PlayerScript : MonoBehaviour, IDynamicObject
     {
         Debug.Log($"{this.Team} ninja takes the flag!");
         this.carriedFlag = flag;
+        this.speed -= flag.playerSpeedReduceWhenGrabbed;
         this.SetPowerUp(null);
         ninjaAnimation.TakeFlagAnimation();
     }
 
     public void ConveyFlag()
     {
+        this.speed += this.carriedFlag.playerSpeedReduceWhenGrabbed;
         this.carriedFlag.Convey();
         this.carriedFlag = null;
         ninjaAnimation.ConveyFlagAnimation();
