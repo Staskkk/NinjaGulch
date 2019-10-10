@@ -864,9 +864,8 @@ MonoBehaviour:
   playerTurnDownSprites:
   - {fileID: 21300000, guid: 24d8fcedd99f9844fb38a8a74cafcd7b, type: 3}
   playerTurnDurationSec: 1
-  idleDurationSec: 1
-  movementDurationSec: 0.7
   attackDurationSec: 0.6
+  movementAnimSpeedRatio: 21
   powerUpSpriteObject: {fileID: 5870208460945130762}
   playerTurnObject: {fileID: 4280072140886216497}
   playerControl: {fileID: 904139659}

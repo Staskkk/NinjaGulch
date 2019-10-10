@@ -60,11 +60,9 @@ public class NinjaAnimationScript : MonoBehaviour
 
     public float playerTurnDurationSec;
 
-    public float idleDurationSec;
-
-    public float movementDurationSec;
-
     public float attackDurationSec;
+
+    public float movementAnimSpeedRatio;
 
     public ObjectScript powerUpSpriteObject;
 
@@ -80,8 +78,6 @@ public class NinjaAnimationScript : MonoBehaviour
 
     private Sprite[][][][] sprites;
 
-    private float[] durations;
-
     private Sprite[][] powerSprites;
 
     private Sprite[][] playerTurnSprites;
@@ -91,6 +87,8 @@ public class NinjaAnimationScript : MonoBehaviour
     private int oldPowerAnim = -1;
 
     private PlayerTurn? oldPlayerTurn = null;
+
+    private float oldPlayerSpeed = -1;
 
     private enum AnimActionState
     {
@@ -230,11 +228,6 @@ public class NinjaAnimationScript : MonoBehaviour
         sprites[(int)AnimActionState.Attack][(int)AnimItemState.Katana][(int)PlayerDirection.Right] = attackKatanaRight;
         sprites[(int)AnimActionState.Attack][(int)AnimItemState.Katana][(int)PlayerDirection.Bottom] = attackKatanaBottom;
 
-        durations = new float[3];
-        durations[(int)AnimActionState.Idle] = idleDurationSec;
-        durations[(int)AnimActionState.Move] = movementDurationSec;
-        durations[(int)AnimActionState.Attack] = attackDurationSec;
-
         powerSprites = new Sprite[3][];
         powerSprites[(int)AnimPowerState.None] = new Sprite[] { null };
         powerSprites[(int)AnimPowerState.Immortality] = immortalitySprites;
@@ -251,10 +244,14 @@ public class NinjaAnimationScript : MonoBehaviour
         int itemState = (int)this.ItemState;
         int playerDirection = (int)playerControl.playerDirection;
         int currentAnim = actionState * 100 + itemState * 10 + playerDirection;
-        if (currentAnim != oldAnim)
+        if (currentAnim != oldAnim || oldPlayerSpeed != playerScript.TotalSpeed)
         {
-            Utils.MakeAnimation(objectScript, durations[actionState], sprites[actionState][itemState][playerDirection]);
+            Utils.MakeAnimation(
+                objectScript,
+                actionState != (int)AnimActionState.Attack ? 1 / playerScript.TotalSpeed * movementAnimSpeedRatio : attackDurationSec,
+                sprites[actionState][itemState][playerDirection]);
             oldAnim = currentAnim;
+            oldPlayerSpeed = playerScript.TotalSpeed;
         }
 
         int powerState = (int)this.PowerState;

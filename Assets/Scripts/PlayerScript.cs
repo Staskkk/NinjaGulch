@@ -44,6 +44,11 @@ public class PlayerScript : MonoBehaviour, IDynamicObject
         set { team = value; }
     }
 
+    public float TotalSpeed
+    {
+        get { return this.speed + this.bonusSpeed; }
+    }
+
     private Coroutine powerUpCoroutine;
 
     void Start()
