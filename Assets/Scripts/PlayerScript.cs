@@ -115,7 +115,6 @@ public class PlayerScript : MonoBehaviour, IDynamicObject
         }
 
         health = health > damage ? health - damage : 0;
-        //playerHealthTexts[(int)Team].text = Mathf.RoundToInt(health).ToString();
         ninjaAnimation.DamageAnimation(damage);
         if (health <= 0)
         {
