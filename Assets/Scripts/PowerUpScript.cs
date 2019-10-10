@@ -75,7 +75,7 @@ public class PowerUpScript : MonoBehaviour, IDynamicObject
         if (other.CompareTag("Player"))
         {
             var player = other.GetComponent<PlayerScript>();
-            if (player.isAlive && player.carriedFlag == null)
+            if (player.isAlive)
             {
                 player.SetPowerUp(this, this.powerDuration);
                 this.Grab();

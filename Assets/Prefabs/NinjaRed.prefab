@@ -196,6 +196,30 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 2062790497375807338, guid: 3c62d663dd64e71458217464fd802bc1,
         type: 3}
+      propertyPath: idleFlagKatanaLeft.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: 9ec609fc9a145924abf8df104ebf1b33,
+        type: 3}
+    - target: {fileID: 2062790497375807338, guid: 3c62d663dd64e71458217464fd802bc1,
+        type: 3}
+      propertyPath: idleFlagKatanaTop.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: 89435702abf2bda4bba33acc544da0b6,
+        type: 3}
+    - target: {fileID: 2062790497375807338, guid: 3c62d663dd64e71458217464fd802bc1,
+        type: 3}
+      propertyPath: idleFlagKatanaRight.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: 604a720d2cda5fd47a45f02f1132b21c,
+        type: 3}
+    - target: {fileID: 2062790497375807338, guid: 3c62d663dd64e71458217464fd802bc1,
+        type: 3}
+      propertyPath: idleFlagKatanaBottom.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: b1a97341f8e36304dbce5bfc931e01c1,
+        type: 3}
+    - target: {fileID: 2062790497375807338, guid: 3c62d663dd64e71458217464fd802bc1,
+        type: 3}
       propertyPath: movementLeft.Array.data[0]
       value: 
       objectReference: {fileID: 21300000, guid: 141b51a6fcfb0ea4d8b031caa25ca0d5,
@@ -484,6 +508,102 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 2062790497375807338, guid: 3c62d663dd64e71458217464fd802bc1,
         type: 3}
+      propertyPath: movementFlagKatanaLeft.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: d58d1d2e65d71124ea2c26229c8a176a,
+        type: 3}
+    - target: {fileID: 2062790497375807338, guid: 3c62d663dd64e71458217464fd802bc1,
+        type: 3}
+      propertyPath: movementFlagKatanaLeft.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: 9ec609fc9a145924abf8df104ebf1b33,
+        type: 3}
+    - target: {fileID: 2062790497375807338, guid: 3c62d663dd64e71458217464fd802bc1,
+        type: 3}
+      propertyPath: movementFlagKatanaLeft.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: 56b6cda09b7e4134695178bbbce02cd8,
+        type: 3}
+    - target: {fileID: 2062790497375807338, guid: 3c62d663dd64e71458217464fd802bc1,
+        type: 3}
+      propertyPath: movementFlagKatanaLeft.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300000, guid: 9ec609fc9a145924abf8df104ebf1b33,
+        type: 3}
+    - target: {fileID: 2062790497375807338, guid: 3c62d663dd64e71458217464fd802bc1,
+        type: 3}
+      propertyPath: movementFlagKatanaTop.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: 5d31195f189c8844f97270cf79f07560,
+        type: 3}
+    - target: {fileID: 2062790497375807338, guid: 3c62d663dd64e71458217464fd802bc1,
+        type: 3}
+      propertyPath: movementFlagKatanaTop.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: 89435702abf2bda4bba33acc544da0b6,
+        type: 3}
+    - target: {fileID: 2062790497375807338, guid: 3c62d663dd64e71458217464fd802bc1,
+        type: 3}
+      propertyPath: movementFlagKatanaTop.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: 8bbfb1a58ad8e314db4b68df61f7afd8,
+        type: 3}
+    - target: {fileID: 2062790497375807338, guid: 3c62d663dd64e71458217464fd802bc1,
+        type: 3}
+      propertyPath: movementFlagKatanaTop.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300000, guid: 89435702abf2bda4bba33acc544da0b6,
+        type: 3}
+    - target: {fileID: 2062790497375807338, guid: 3c62d663dd64e71458217464fd802bc1,
+        type: 3}
+      propertyPath: movementFlagKatanaRight.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: d776930ee81f90b468559ec94f974545,
+        type: 3}
+    - target: {fileID: 2062790497375807338, guid: 3c62d663dd64e71458217464fd802bc1,
+        type: 3}
+      propertyPath: movementFlagKatanaRight.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: 604a720d2cda5fd47a45f02f1132b21c,
+        type: 3}
+    - target: {fileID: 2062790497375807338, guid: 3c62d663dd64e71458217464fd802bc1,
+        type: 3}
+      propertyPath: movementFlagKatanaRight.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: e7c76870583ef624fb0ee4bcd7000b14,
+        type: 3}
+    - target: {fileID: 2062790497375807338, guid: 3c62d663dd64e71458217464fd802bc1,
+        type: 3}
+      propertyPath: movementFlagKatanaRight.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300000, guid: 604a720d2cda5fd47a45f02f1132b21c,
+        type: 3}
+    - target: {fileID: 2062790497375807338, guid: 3c62d663dd64e71458217464fd802bc1,
+        type: 3}
+      propertyPath: movementFlagKatanaBottom.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: fd6da9271aa2ec44e9d0f5c4431002ca,
+        type: 3}
+    - target: {fileID: 2062790497375807338, guid: 3c62d663dd64e71458217464fd802bc1,
+        type: 3}
+      propertyPath: movementFlagKatanaBottom.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: b1a97341f8e36304dbce5bfc931e01c1,
+        type: 3}
+    - target: {fileID: 2062790497375807338, guid: 3c62d663dd64e71458217464fd802bc1,
+        type: 3}
+      propertyPath: movementFlagKatanaBottom.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: 0fd95722ec1887f42ad74cb2fb6626d0,
+        type: 3}
+    - target: {fileID: 2062790497375807338, guid: 3c62d663dd64e71458217464fd802bc1,
+        type: 3}
+      propertyPath: movementFlagKatanaBottom.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300000, guid: b1a97341f8e36304dbce5bfc931e01c1,
+        type: 3}
+    - target: {fileID: 2062790497375807338, guid: 3c62d663dd64e71458217464fd802bc1,
+        type: 3}
       propertyPath: attackLeft.Array.data[0]
       value: 
       objectReference: {fileID: 21300000, guid: a7795b6b1ec9e9545bf09baaf3ed143b,
@@ -769,6 +889,102 @@ PrefabInstance:
       propertyPath: attackKatanaBottom.Array.data[3]
       value: 
       objectReference: {fileID: 21300000, guid: 5c80cabb9d9775e469e106d060d67b81,
+        type: 3}
+    - target: {fileID: 2062790497375807338, guid: 3c62d663dd64e71458217464fd802bc1,
+        type: 3}
+      propertyPath: attackFlagKatanaLeft.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: f91cc62f3228bfb429c75b7cb1a85cb7,
+        type: 3}
+    - target: {fileID: 2062790497375807338, guid: 3c62d663dd64e71458217464fd802bc1,
+        type: 3}
+      propertyPath: attackFlagKatanaLeft.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: e566df5fb382ce24bbf8bf51bb82a94d,
+        type: 3}
+    - target: {fileID: 2062790497375807338, guid: 3c62d663dd64e71458217464fd802bc1,
+        type: 3}
+      propertyPath: attackFlagKatanaLeft.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: 17fbabb77ee93e449995c5f7b22426b7,
+        type: 3}
+    - target: {fileID: 2062790497375807338, guid: 3c62d663dd64e71458217464fd802bc1,
+        type: 3}
+      propertyPath: attackFlagKatanaLeft.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300000, guid: d9d4fd808f80b234eb1348dc6a3aaabd,
+        type: 3}
+    - target: {fileID: 2062790497375807338, guid: 3c62d663dd64e71458217464fd802bc1,
+        type: 3}
+      propertyPath: attackFlagKatanaTop.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: 6cc2e85cac79e1f4b98a5c652dfc023c,
+        type: 3}
+    - target: {fileID: 2062790497375807338, guid: 3c62d663dd64e71458217464fd802bc1,
+        type: 3}
+      propertyPath: attackFlagKatanaTop.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: 044a8ee57a4419e4bb672df104fd8a3c,
+        type: 3}
+    - target: {fileID: 2062790497375807338, guid: 3c62d663dd64e71458217464fd802bc1,
+        type: 3}
+      propertyPath: attackFlagKatanaTop.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: a17e8e1192f60f645b8033328c06f460,
+        type: 3}
+    - target: {fileID: 2062790497375807338, guid: 3c62d663dd64e71458217464fd802bc1,
+        type: 3}
+      propertyPath: attackFlagKatanaTop.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300000, guid: 144e7ee34b596514ca3cf8f7aa62d471,
+        type: 3}
+    - target: {fileID: 2062790497375807338, guid: 3c62d663dd64e71458217464fd802bc1,
+        type: 3}
+      propertyPath: attackFlagKatanaRight.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: 98d0f5aae694fe4438004270c20999d7,
+        type: 3}
+    - target: {fileID: 2062790497375807338, guid: 3c62d663dd64e71458217464fd802bc1,
+        type: 3}
+      propertyPath: attackFlagKatanaRight.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: ca978234543ca9445bedd4fcb5f3f6fd,
+        type: 3}
+    - target: {fileID: 2062790497375807338, guid: 3c62d663dd64e71458217464fd802bc1,
+        type: 3}
+      propertyPath: attackFlagKatanaRight.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: fbb987c442f7d4a45b1851ab0d78d171,
+        type: 3}
+    - target: {fileID: 2062790497375807338, guid: 3c62d663dd64e71458217464fd802bc1,
+        type: 3}
+      propertyPath: attackFlagKatanaRight.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300000, guid: 0d93641bb80ca1a40a6f2115c531b2b7,
+        type: 3}
+    - target: {fileID: 2062790497375807338, guid: 3c62d663dd64e71458217464fd802bc1,
+        type: 3}
+      propertyPath: attackFlagKatanaBottom.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: d2cf88ee63c89b44689ce3e8bb4de54a,
+        type: 3}
+    - target: {fileID: 2062790497375807338, guid: 3c62d663dd64e71458217464fd802bc1,
+        type: 3}
+      propertyPath: attackFlagKatanaBottom.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: dbf377b76c3752441a13d0d43440c4e2,
+        type: 3}
+    - target: {fileID: 2062790497375807338, guid: 3c62d663dd64e71458217464fd802bc1,
+        type: 3}
+      propertyPath: attackFlagKatanaBottom.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: b70e2456776c8104984c99b8ab6e0361,
+        type: 3}
+    - target: {fileID: 2062790497375807338, guid: 3c62d663dd64e71458217464fd802bc1,
+        type: 3}
+      propertyPath: attackFlagKatanaBottom.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300000, guid: 3776835f731d0c443a0bc1abb4a63c04,
         type: 3}
     - target: {fileID: 2062790497375807338, guid: 3c62d663dd64e71458217464fd802bc1,
         type: 3}

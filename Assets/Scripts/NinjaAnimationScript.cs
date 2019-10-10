@@ -20,6 +20,11 @@ public class NinjaAnimationScript : MonoBehaviour
     public Sprite[] idleKatanaRight;
     public Sprite[] idleKatanaBottom;
 
+    public Sprite[] idleFlagKatanaLeft;
+    public Sprite[] idleFlagKatanaTop;
+    public Sprite[] idleFlagKatanaRight;
+    public Sprite[] idleFlagKatanaBottom;
+
     public Sprite[] movementLeft;
     public Sprite[] movementTop;
     public Sprite[] movementRight;
@@ -35,6 +40,11 @@ public class NinjaAnimationScript : MonoBehaviour
     public Sprite[] movementKatanaRight;
     public Sprite[] movementKatanaBottom;
 
+    public Sprite[] movementFlagKatanaLeft;
+    public Sprite[] movementFlagKatanaTop;
+    public Sprite[] movementFlagKatanaRight;
+    public Sprite[] movementFlagKatanaBottom;
+
     public Sprite[] attackLeft;
     public Sprite[] attackTop;
     public Sprite[] attackRight;
@@ -49,6 +59,11 @@ public class NinjaAnimationScript : MonoBehaviour
     public Sprite[] attackKatanaTop;
     public Sprite[] attackKatanaRight;
     public Sprite[] attackKatanaBottom;
+
+    public Sprite[] attackFlagKatanaLeft;
+    public Sprite[] attackFlagKatanaTop;
+    public Sprite[] attackFlagKatanaRight;
+    public Sprite[] attackFlagKatanaBottom;
 
     public Sprite[] immortalitySprites;
 
@@ -109,7 +124,8 @@ public class NinjaAnimationScript : MonoBehaviour
     {
         Hands = 0,
         Flag = 1,
-        Katana = 2
+        Katana = 2,
+        FlagAndKatana = 3
     }
 
     private enum AnimPowerState
@@ -141,6 +157,11 @@ public class NinjaAnimationScript : MonoBehaviour
     {
         get
         {
+            if (playerScript.carriedFlag != null && playerScript.powerUp == PowerUp.Katana)
+            {
+                return AnimItemState.FlagAndKatana;
+            }
+
             if (playerScript.carriedFlag != null)
             {
                 return AnimItemState.Flag;
@@ -176,7 +197,7 @@ public class NinjaAnimationScript : MonoBehaviour
     {
         sprites = new Sprite[3][][][];
 
-        sprites[(int)AnimActionState.Idle] = new Sprite[3][][];  
+        sprites[(int)AnimActionState.Idle] = new Sprite[4][][];  
         
         sprites[(int)AnimActionState.Idle][(int)AnimItemState.Hands] = new Sprite[4][];
         sprites[(int)AnimActionState.Idle][(int)AnimItemState.Hands][(int)PlayerDirection.Left] = idleLeft;
@@ -196,7 +217,13 @@ public class NinjaAnimationScript : MonoBehaviour
         sprites[(int)AnimActionState.Idle][(int)AnimItemState.Katana][(int)PlayerDirection.Right] = idleKatanaRight;
         sprites[(int)AnimActionState.Idle][(int)AnimItemState.Katana][(int)PlayerDirection.Bottom] = idleKatanaBottom;
 
-        sprites[(int)AnimActionState.Move] = new Sprite[3][][];
+        sprites[(int)AnimActionState.Idle][(int)AnimItemState.FlagAndKatana] = new Sprite[4][];
+        sprites[(int)AnimActionState.Idle][(int)AnimItemState.FlagAndKatana][(int)PlayerDirection.Left] = idleFlagKatanaLeft;
+        sprites[(int)AnimActionState.Idle][(int)AnimItemState.FlagAndKatana][(int)PlayerDirection.Top] = idleFlagKatanaTop;
+        sprites[(int)AnimActionState.Idle][(int)AnimItemState.FlagAndKatana][(int)PlayerDirection.Right] = idleFlagKatanaRight;
+        sprites[(int)AnimActionState.Idle][(int)AnimItemState.FlagAndKatana][(int)PlayerDirection.Bottom] = idleFlagKatanaBottom;
+
+        sprites[(int)AnimActionState.Move] = new Sprite[4][][];
 
         sprites[(int)AnimActionState.Move][(int)AnimItemState.Hands] = new Sprite[4][];
         sprites[(int)AnimActionState.Move][(int)AnimItemState.Hands][(int)PlayerDirection.Left] = movementLeft;
@@ -216,7 +243,13 @@ public class NinjaAnimationScript : MonoBehaviour
         sprites[(int)AnimActionState.Move][(int)AnimItemState.Katana][(int)PlayerDirection.Right] = movementKatanaRight;
         sprites[(int)AnimActionState.Move][(int)AnimItemState.Katana][(int)PlayerDirection.Bottom] = movementKatanaBottom;
 
-        sprites[(int)AnimActionState.Attack] = new Sprite[3][][];
+        sprites[(int)AnimActionState.Move][(int)AnimItemState.FlagAndKatana] = new Sprite[4][];
+        sprites[(int)AnimActionState.Move][(int)AnimItemState.FlagAndKatana][(int)PlayerDirection.Left] = movementFlagKatanaLeft;
+        sprites[(int)AnimActionState.Move][(int)AnimItemState.FlagAndKatana][(int)PlayerDirection.Top] = movementFlagKatanaTop;
+        sprites[(int)AnimActionState.Move][(int)AnimItemState.FlagAndKatana][(int)PlayerDirection.Right] = movementFlagKatanaRight;
+        sprites[(int)AnimActionState.Move][(int)AnimItemState.FlagAndKatana][(int)PlayerDirection.Bottom] = movementFlagKatanaBottom;
+
+        sprites[(int)AnimActionState.Attack] = new Sprite[4][][];
 
         sprites[(int)AnimActionState.Attack][(int)AnimItemState.Hands] = new Sprite[4][];
         sprites[(int)AnimActionState.Attack][(int)AnimItemState.Hands][(int)PlayerDirection.Left] = attackLeft;
@@ -235,6 +268,12 @@ public class NinjaAnimationScript : MonoBehaviour
         sprites[(int)AnimActionState.Attack][(int)AnimItemState.Katana][(int)PlayerDirection.Top] = attackKatanaTop;
         sprites[(int)AnimActionState.Attack][(int)AnimItemState.Katana][(int)PlayerDirection.Right] = attackKatanaRight;
         sprites[(int)AnimActionState.Attack][(int)AnimItemState.Katana][(int)PlayerDirection.Bottom] = attackKatanaBottom;
+
+        sprites[(int)AnimActionState.Attack][(int)AnimItemState.FlagAndKatana] = new Sprite[4][];
+        sprites[(int)AnimActionState.Attack][(int)AnimItemState.FlagAndKatana][(int)PlayerDirection.Left] = attackFlagKatanaLeft;
+        sprites[(int)AnimActionState.Attack][(int)AnimItemState.FlagAndKatana][(int)PlayerDirection.Top] = attackFlagKatanaTop;
+        sprites[(int)AnimActionState.Attack][(int)AnimItemState.FlagAndKatana][(int)PlayerDirection.Right] = attackFlagKatanaRight;
+        sprites[(int)AnimActionState.Attack][(int)AnimItemState.FlagAndKatana][(int)PlayerDirection.Bottom] = attackFlagKatanaBottom;
 
         powerSprites = new Sprite[3][];
         powerSprites[(int)AnimPowerState.None] = new Sprite[] { null };

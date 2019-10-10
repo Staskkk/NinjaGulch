@@ -334,6 +334,7 @@ MonoBehaviour:
   speed: 30
   bonusSpeed: 0
   isAlive: 1
+  isInDeathCondition: 0
   powerUp: 0
   team: 0
 --- !u!82 &2903847474356583485
@@ -736,6 +737,14 @@ MonoBehaviour:
   - {fileID: 21300000, guid: b32187f133219b24fb1d16743fb8ecb4, type: 3}
   idleKatanaBottom:
   - {fileID: 21300000, guid: d47a20f5337cc49498f09ef76ffdc46e, type: 3}
+  idleFlagKatanaLeft:
+  - {fileID: 21300000, guid: 7e7f3cf19ba1a9c4a9b04d1886057b57, type: 3}
+  idleFlagKatanaTop:
+  - {fileID: 21300000, guid: d0c53e61b4d795b4ca4f6c598e1f1499, type: 3}
+  idleFlagKatanaRight:
+  - {fileID: 21300000, guid: f33c368d9d0400349b2c71c8f87af014, type: 3}
+  idleFlagKatanaBottom:
+  - {fileID: 21300000, guid: f72dd09d4e86b404687990d0cc40676c, type: 3}
   movementLeft:
   - {fileID: 21300000, guid: 8284ece600d835343a78bfbae9306b2e, type: 3}
   - {fileID: 21300000, guid: 02c480493bfa8ab4d8e6b6d9058f59c2, type: 3}
@@ -796,6 +805,26 @@ MonoBehaviour:
   - {fileID: 21300000, guid: d47a20f5337cc49498f09ef76ffdc46e, type: 3}
   - {fileID: 21300000, guid: 23880fe26edfe5241b355b0a0ad47c32, type: 3}
   - {fileID: 21300000, guid: d47a20f5337cc49498f09ef76ffdc46e, type: 3}
+  movementFlagKatanaLeft:
+  - {fileID: 21300000, guid: c68e505af1bcc17469a7d008b4f30a29, type: 3}
+  - {fileID: 21300000, guid: 7e7f3cf19ba1a9c4a9b04d1886057b57, type: 3}
+  - {fileID: 21300000, guid: a61cdee22916fad499ef2424dd8a3f3c, type: 3}
+  - {fileID: 21300000, guid: 7e7f3cf19ba1a9c4a9b04d1886057b57, type: 3}
+  movementFlagKatanaTop:
+  - {fileID: 21300000, guid: 8475e38fedfa1954da6f9a0c40f20a2c, type: 3}
+  - {fileID: 21300000, guid: d0c53e61b4d795b4ca4f6c598e1f1499, type: 3}
+  - {fileID: 21300000, guid: adfa63535c18d66499a478330e92619b, type: 3}
+  - {fileID: 21300000, guid: d0c53e61b4d795b4ca4f6c598e1f1499, type: 3}
+  movementFlagKatanaRight:
+  - {fileID: 21300000, guid: a496ec17ed6bfff4aab7ed83ab32929a, type: 3}
+  - {fileID: 21300000, guid: f33c368d9d0400349b2c71c8f87af014, type: 3}
+  - {fileID: 21300000, guid: 23def1f0c9b3bb04ab78df54a0667126, type: 3}
+  - {fileID: 21300000, guid: f33c368d9d0400349b2c71c8f87af014, type: 3}
+  movementFlagKatanaBottom:
+  - {fileID: 21300000, guid: 11474b4829a39864daec3be03fe9d8dc, type: 3}
+  - {fileID: 21300000, guid: f72dd09d4e86b404687990d0cc40676c, type: 3}
+  - {fileID: 21300000, guid: a93240d259f5be041bd784a9b7a1599f, type: 3}
+  - {fileID: 21300000, guid: f72dd09d4e86b404687990d0cc40676c, type: 3}
   attackLeft:
   - {fileID: 21300000, guid: 7f86225f62f861142b56ca67f8be7d19, type: 3}
   - {fileID: 21300000, guid: 64eb57c493d922f4c8c56d3ace44a3c2, type: 3}
@@ -856,6 +885,26 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 810a6d055fc8c65468f96d72a715ad5f, type: 3}
   - {fileID: 21300000, guid: 8d2e2e05a10c65849aa27a88938549d4, type: 3}
   - {fileID: 21300000, guid: 083b93be7f21f1d46a3ec87b682637bf, type: 3}
+  attackFlagKatanaLeft:
+  - {fileID: 21300000, guid: c8452f59a465ebc40b5a496cee23710d, type: 3}
+  - {fileID: 21300000, guid: 075edc4642f7d904f8cc1d7e0d2cf61e, type: 3}
+  - {fileID: 21300000, guid: 2e171e35140864a4fb60d05e4a563b5b, type: 3}
+  - {fileID: 21300000, guid: 6517c01c068ee9847a8f75632f2edd95, type: 3}
+  attackFlagKatanaTop:
+  - {fileID: 21300000, guid: a5dfdfc19b0e95f479eee1a709714c4a, type: 3}
+  - {fileID: 21300000, guid: c2e18dea72f459747933e0ccc9fda218, type: 3}
+  - {fileID: 21300000, guid: 241d6db1b04e0d446bade3fec163038b, type: 3}
+  - {fileID: 21300000, guid: f02636ca74e2610489141f5c93cb87e5, type: 3}
+  attackFlagKatanaRight:
+  - {fileID: 21300000, guid: b06c26c1796d94041bb675d52c24d35b, type: 3}
+  - {fileID: 21300000, guid: 75e9a76811f0dda438b011a1c1f17c1c, type: 3}
+  - {fileID: 21300000, guid: 422746c051ffa6c4c8b8c0ccbb6b9812, type: 3}
+  - {fileID: 21300000, guid: 0501cb498eb41f244b236d4e00dac09f, type: 3}
+  attackFlagKatanaBottom:
+  - {fileID: 21300000, guid: f161fc3303f6f0642bdea44c3bc39d9d, type: 3}
+  - {fileID: 21300000, guid: 2b59e16f2e2b150488a6b06d201aff31, type: 3}
+  - {fileID: 21300000, guid: 98e9a08951ecbd74686360cfb74ec0cf, type: 3}
+  - {fileID: 21300000, guid: 0ec6de68db24a5a4a9e62b8cd859b0bf, type: 3}
   immortalitySprites:
   - {fileID: 21300000, guid: 673cd3004a886aa4d8455e7ef72820b7, type: 3}
   speedUpSprites:

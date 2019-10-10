@@ -169,7 +169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   powerType: 0
-  powerDuration: 15
+  powerDuration: 20
   bonusSpeed: 25
   bonusDamage: 1
   grabSprites: []

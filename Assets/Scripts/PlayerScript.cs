@@ -89,7 +89,6 @@ public class PlayerScript : MonoBehaviour, IDynamicObject
         Debug.Log($"{this.Team} ninja takes the flag!");
         this.carriedFlag = flag;
         this.speed -= flag.playerSpeedReduceWhenGrabbed;
-        this.SetPowerUp(null);
         ninjaAnimation.TakeFlagAnimation();
     }
 
@@ -103,13 +102,18 @@ public class PlayerScript : MonoBehaviour, IDynamicObject
 
     public void SetDamage(float damage, out bool isDied)
     {
-        isDied = false;
         if (this.isImmortal)
         {
             damage = 0;
         }
 
         Debug.Log($"{this.Team} ninja was hit, damage: {damage}!");
+        isDied = false;
+        if (this.isImmortal)
+        {
+            return;
+        }
+
         health = health > damage ? health - damage : 0;
         //playerHealthTexts[(int)Team].text = Mathf.RoundToInt(health).ToString();
         ninjaAnimation.DamageAnimation(damage);
