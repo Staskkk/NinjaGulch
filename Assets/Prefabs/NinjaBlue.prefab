@@ -251,6 +251,7 @@ Transform:
   - {fileID: 904139658}
   - {fileID: 4973216193851552228}
   - {fileID: 1164598238}
+  - {fileID: 6172961255807460185}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -490,6 +491,103 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8926bde76a6522d4bbdf32ca74fb84a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &3811871643066445216
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6172961255807460185}
+  - component: {fileID: 8624075118329515224}
+  - component: {fileID: 4280072140886216497}
+  m_Layer: 0
+  m_Name: TurnSprite
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6172961255807460185
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3811871643066445216}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1668664810959455167}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &8624075118329515224
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3811871643066445216}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: a22a87abaf22e244caf12c1454fca50f, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 16, y: 24}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!114 &4280072140886216497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3811871643066445216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74d77c5da72cb8d44b5cc4164a48e02c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 8624075118329515224}
+  sprites:
+  - {fileID: 21300000, guid: a22a87abaf22e244caf12c1454fca50f, type: 3}
+  durationSec: 1
 --- !u!1 &8885059501588137544
 GameObject:
   m_ObjectHideFlags: 0
@@ -761,11 +859,16 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 673cd3004a886aa4d8455e7ef72820b7, type: 3}
   speedUpSprites:
   - {fileID: 21300000, guid: 8eeb6d40d5d069540863dd36217dcaf7, type: 3}
-  powerUpDuration: 1
+  playerTurnUpSprites:
+  - {fileID: 21300000, guid: a22a87abaf22e244caf12c1454fca50f, type: 3}
+  playerTurnDownSprites:
+  - {fileID: 21300000, guid: 24d8fcedd99f9844fb38a8a74cafcd7b, type: 3}
+  playerTurnDurationSec: 1
   idleDurationSec: 1
   movementDurationSec: 0.7
   attackDurationSec: 0.6
   powerUpSpriteObject: {fileID: 5870208460945130762}
+  playerTurnObject: {fileID: 4280072140886216497}
   playerControl: {fileID: 904139659}
   objectScript: {fileID: 5616551340360772066}
   playerScript: {fileID: 4002064923176293825}

@@ -34,6 +34,8 @@ public class PlayerScript : MonoBehaviour, IDynamicObject
 
     public PowerUp powerUp;
 
+    public float? powerUpDuration;
+
     public Team team;
 
     public Team Team
@@ -132,6 +134,7 @@ public class PlayerScript : MonoBehaviour, IDynamicObject
 
     public void SetPowerUp(PowerUpScript powerUpScript, float? powerDuration = null)
     {
+        this.powerUpDuration = powerDuration;
         this.powerUp = powerUpScript?.powerType ?? PowerUp.None;
         Debug.Log($"{this.Team} ninja gets power-up {this.powerUp}, duration: {powerDuration}!");
         if (powerUpCoroutine != null)

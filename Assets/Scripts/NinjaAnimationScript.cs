@@ -54,7 +54,11 @@ public class NinjaAnimationScript : MonoBehaviour
 
     public Sprite[] speedUpSprites;
 
-    public float powerUpDuration;
+    public Sprite[] playerTurnUpSprites;
+
+    public Sprite[] playerTurnDownSprites;
+
+    public float playerTurnDurationSec;
 
     public float idleDurationSec;
 
@@ -63,6 +67,8 @@ public class NinjaAnimationScript : MonoBehaviour
     public float attackDurationSec;
 
     public ObjectScript powerUpSpriteObject;
+
+    public ObjectScript playerTurnObject;
 
     public PlayerControlScript playerControl;
 
@@ -78,9 +84,13 @@ public class NinjaAnimationScript : MonoBehaviour
 
     private Sprite[][] powerSprites;
 
+    private Sprite[][] playerTurnSprites;
+
     private int oldAnim = -1;
 
     private int oldPowerAnim = -1;
+
+    private PlayerTurn? oldPlayerTurn = null;
 
     private enum AnimActionState
     {
@@ -229,6 +239,10 @@ public class NinjaAnimationScript : MonoBehaviour
         powerSprites[(int)AnimPowerState.None] = new Sprite[] { null };
         powerSprites[(int)AnimPowerState.Immortality] = immortalitySprites;
         powerSprites[(int)AnimPowerState.SpeedUp] = speedUpSprites;
+
+        playerTurnSprites = new Sprite[2][];
+        playerTurnSprites[(int)PlayerTurn.Up] = playerTurnUpSprites;
+        playerTurnSprites[(int)PlayerTurn.Down] = playerTurnDownSprites;
     }
 
     void Update()
@@ -247,8 +261,14 @@ public class NinjaAnimationScript : MonoBehaviour
         int currentPowerAnim = powerState;
         if (currentPowerAnim != oldPowerAnim)
         {
-            Utils.MakeAnimation(powerUpSpriteObject, powerUpDuration, powerSprites[powerState]);
+            Utils.MakeAnimation(powerUpSpriteObject, playerScript.powerUpDuration ?? 1, powerSprites[powerState]);
             oldPowerAnim = currentPowerAnim;
+        }
+
+        if (oldPlayerTurn != playerControl.playerTurn)
+        {
+            Utils.MakeAnimation(playerTurnObject, playerTurnDurationSec, playerTurnSprites[(int)playerControl.playerTurn]);
+            oldPlayerTurn = playerControl.playerTurn;
         }
     }
 
