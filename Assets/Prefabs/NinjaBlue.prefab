@@ -335,6 +335,7 @@ MonoBehaviour:
   bonusSpeed: 0
   isAlive: 1
   isInDeathCondition: 0
+  startImmortalDuration: 1
   powerUp: 0
   team: 0
 --- !u!82 &2903847474356583485

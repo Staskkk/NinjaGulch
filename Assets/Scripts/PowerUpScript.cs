@@ -30,6 +30,22 @@ public class PowerUpScript : MonoBehaviour, IDynamicObject
 
     public Team Team { get; set; } = Team.None;
 
+    public float? PowerParam
+    {
+        get
+        {
+            switch (powerType)
+            {
+                case PowerUp.Katana:
+                    return bonusDamage;
+                case PowerUp.SpeedUp:
+                    return bonusSpeed;
+                default:
+                    return null;
+            }
+        }
+    }
+
     private ObjectScript objectScript;
 
     void Start()
@@ -77,7 +93,7 @@ public class PowerUpScript : MonoBehaviour, IDynamicObject
             var player = other.GetComponent<PlayerScript>();
             if (player.isAlive)
             {
-                player.SetPowerUp(this, this.powerDuration);
+                player.SetPowerUp(this.powerType, this.powerDuration, this.PowerParam);
                 this.Grab();
             }
         }

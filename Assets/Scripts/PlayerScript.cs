@@ -36,6 +36,8 @@ public class PlayerScript : MonoBehaviour, IDynamicObject
 
     public bool isInDeathCondition;
 
+    public float startImmortalDuration;
+
     public PowerUp powerUp;
 
     public float? powerUpDuration;
@@ -57,6 +59,10 @@ public class PlayerScript : MonoBehaviour, IDynamicObject
 
     void Start()
     {
+        if (startImmortalDuration > 0)
+        {
+            this.SetPowerUp(PowerUp.Immortality, startImmortalDuration);
+        }
     }
 
     void Update()
@@ -154,11 +160,11 @@ public class PlayerScript : MonoBehaviour, IDynamicObject
         GameManagerScript.i.CreateNinja(this.Team);
     }
 
-    public void SetPowerUp(PowerUpScript powerUpScript, float? powerDuration = null)
+    public void SetPowerUp(PowerUp powerType, float? powerDuration = null, float? powerParam = null)
     {
         this.powerUpDuration = powerDuration;
-        this.powerUp = powerUpScript?.powerType ?? PowerUp.None;
-        Debug.Log($"{this.Team} ninja gets power-up {this.powerUp}, duration: {powerDuration}!");
+        this.powerUp = powerType;
+        Debug.Log($"{this.Team} ninja gets power-up {this.powerUp}, duration: {this.powerUpDuration}!");
         if (powerUpCoroutine != null)
         {
             StopCoroutine(powerUpCoroutine);
@@ -171,21 +177,21 @@ public class PlayerScript : MonoBehaviour, IDynamicObject
         switch (this.powerUp)
         {
             case PowerUp.SpeedUp:
-                bonusSpeed += powerUpScript.bonusSpeed;
-                powerUpCoroutine = StartCoroutine(powerUpRoutine(powerDuration.Value));
+                bonusSpeed += powerParam.Value;
+                powerUpCoroutine = StartCoroutine(powerUpRoutine(this.powerUpDuration.Value));
                 break;
             case PowerUp.Katana:
-                bonusDamage += powerUpScript.bonusDamage;
-                powerUpCoroutine = StartCoroutine(powerUpRoutine(powerDuration.Value));
+                bonusDamage += powerParam.Value;
+                powerUpCoroutine = StartCoroutine(powerUpRoutine(this.powerUpDuration.Value));
                 break;
             case PowerUp.Shurikens:
                 bonusDamage = 1;
                 isRangeAttack = true;
-                powerUpCoroutine = StartCoroutine(powerUpRoutine(powerDuration.Value));
+                powerUpCoroutine = StartCoroutine(powerUpRoutine(this.powerUpDuration.Value));
                 break;
             case PowerUp.Immortality:
                 isImmortal = true;
-                powerUpCoroutine = StartCoroutine(powerUpRoutine(powerDuration.Value));
+                powerUpCoroutine = StartCoroutine(powerUpRoutine(this.powerUpDuration.Value));
                 break;
         }
 
@@ -195,10 +201,6 @@ public class PlayerScript : MonoBehaviour, IDynamicObject
     private IEnumerator powerUpRoutine(float powerDuration)
     {
         yield return new WaitForSeconds(powerDuration);
-        this.SetPowerUp(null);
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
+        this.SetPowerUp(PowerUp.None);
     }
 }
