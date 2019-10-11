@@ -966,7 +966,7 @@ MonoBehaviour:
   ninjaEliminationScore: 3
   flagConveyScore: 9
   isEndless: 0
-  gameTimeoutSec: 10
+  gameTimeoutSec: 120
   rushModeTimeSec: 30
   isRushMode: 0
   rushModeExtraSpeed: 50

@@ -23,7 +23,7 @@ public class DissolveTrapScript : MonoBehaviour, ITrap
 
     void Start()
     {
-        
+        Repair();
     }
 
     void Update()
@@ -45,6 +45,13 @@ public class DissolveTrapScript : MonoBehaviour, ITrap
                 }
             }
         }
+    }
+
+    public void Repair()
+    {
+        isDissolving = false;
+        dissolveTime = 0;
+        dissolveStage = 0;
     }
 
     public void HitNinja(PlayerScript ninja)

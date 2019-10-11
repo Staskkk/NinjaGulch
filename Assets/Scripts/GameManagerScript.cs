@@ -123,9 +123,11 @@ public class GameManagerScript : MonoBehaviour
 
     public void GameStart()
     {
+        map.gameObject.SetActive(true);
         EndScreen.SetActive(false);
         isGameOver = false;
         teamScores = new float[2];
+        RepairTraps();
         CreateNinja(Team.Blue);
         CreateNinja(Team.Red);
         CreateGameObject(flagBlue, flagStartPoints[(int)Team.Blue]);
@@ -137,6 +139,19 @@ public class GameManagerScript : MonoBehaviour
         }
     }
     
+    public void RepairTraps()
+    {
+        var traps = GameObject.FindGameObjectsWithTag("Trap");
+        foreach (var trap in traps)
+        {
+            var trapScript = trap.GetComponent<DissolveTrapScript>();
+            if (trapScript != null)
+            {
+                trapScript.Repair();
+            }
+        }
+    }
+
     public GameObject CreateNinja(Team team)
     {
         var ninja = team == Team.Blue ? ninjaBlue : ninjaRed;
@@ -242,6 +257,7 @@ public class GameManagerScript : MonoBehaviour
         }
 
         EndScreen.SetActive(true);
+        map.gameObject.SetActive(false);
     }
 
     public void GameExit()
