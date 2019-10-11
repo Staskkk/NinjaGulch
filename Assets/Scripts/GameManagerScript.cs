@@ -9,6 +9,12 @@ public class GameManagerScript : MonoBehaviour
 {
     public static GameManagerScript i;
 
+    public GameObject StartScreen;
+
+    public GameObject InstructionScreen;
+
+    public GameObject EndScreen;
+
     public TextMeshProUGUI timerText;
 
     public Image[] healthHearts;
@@ -51,6 +57,8 @@ public class GameManagerScript : MonoBehaviour
 
     public float rushModeExtraSpeed;
 
+    public bool isGameOver;
+
     private float extraSpeed;
 
     private List<GameObject> gameObjects = new List<GameObject>();
@@ -72,17 +80,30 @@ public class GameManagerScript : MonoBehaviour
 
     void Start()
     {
-        GameStart();
+        StartScreen.SetActive(true);
     }
 
     void Update()
     {
-        for (int i = 0; i < ninjas.Length; i++)
+        if (StartScreen.activeSelf && Input.anyKeyDown)
         {
-            if (ninjas[i] != null)
+            StartScreen.SetActive(false);
+            InstructionScreen.SetActive(true);
+        }
+        else if (InstructionScreen.activeSelf && Input.anyKeyDown)
+        {
+            InstructionScreen.SetActive(false);
+            GameStart();
+        }
+        else if (!this.isGameOver)
+        {
+            for (int i = 0; i < ninjas.Length; i++)
             {
-                healthHearts[i].fillAmount = ninjas[i].health / ninjas[i].maxHealth;
-                scoreTexts[i].text = Mathf.RoundToInt(teamScores[i]).ToString();
+                if (ninjas[i] != null)
+                {
+                    healthHearts[i].fillAmount = ninjas[i].health / ninjas[i].maxHealth;
+                    scoreTexts[i].text = Mathf.RoundToInt(teamScores[i]).ToString();
+                }
             }
         }
     }
@@ -102,7 +123,8 @@ public class GameManagerScript : MonoBehaviour
 
     public void GameStart()
     {
-        GameOver();
+        EndScreen.SetActive(false);
+        isGameOver = false;
         teamScores = new float[2];
         CreateNinja(Team.Blue);
         CreateNinja(Team.Red);
@@ -202,6 +224,7 @@ public class GameManagerScript : MonoBehaviour
 
     public void GameOver()
     {
+        this.isGameOver = true;
         if (powerUpCoroutine != null)
         {
             StopCoroutine(powerUpCoroutine);
@@ -217,5 +240,12 @@ public class GameManagerScript : MonoBehaviour
         {
             Destroy(gameObj);
         }
+
+        EndScreen.SetActive(true);
+    }
+
+    public void GameExit()
+    {
+        Application.Quit();
     }
 }
