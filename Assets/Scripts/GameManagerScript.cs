@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManagerScript : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class GameManagerScript : MonoBehaviour
 
     public TextMeshProUGUI timerText;
 
-    public TextMeshProUGUI[] healthTexts;
+    public Image[] healthHearts;
 
     public TextMeshProUGUI[] scoreTexts;
 
@@ -80,7 +81,7 @@ public class GameManagerScript : MonoBehaviour
         {
             if (ninjas[i] != null)
             {
-                healthTexts[i].text = Mathf.RoundToInt(ninjas[i].health).ToString();
+                healthHearts[i].fillAmount = ninjas[i].health / ninjas[i].maxHealth;
                 scoreTexts[i].text = Mathf.RoundToInt(teamScores[i]).ToString();
             }
         }
