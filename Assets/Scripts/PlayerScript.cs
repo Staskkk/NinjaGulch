@@ -164,6 +164,10 @@ public class PlayerScript : MonoBehaviour, IDynamicObject
             StopCoroutine(powerUpCoroutine);
         }
 
+        bonusSpeed = 0;
+        bonusDamage = 0;
+        isRangeAttack = false;
+        isImmortal = false;
         switch (this.powerUp)
         {
             case PowerUp.SpeedUp:
@@ -182,12 +186,6 @@ public class PlayerScript : MonoBehaviour, IDynamicObject
             case PowerUp.Immortality:
                 isImmortal = true;
                 powerUpCoroutine = StartCoroutine(powerUpRoutine(powerDuration.Value));
-                break;
-            case PowerUp.None:
-                bonusSpeed = 0;
-                bonusDamage = 0;
-                isRangeAttack = false;
-                isImmortal = false;
                 break;
         }
 

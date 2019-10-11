@@ -1,10 +1,13 @@
-﻿using System.Collections;
+﻿using Assets.Scripts;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TrapScript : MonoBehaviour
+public class TrapScript : MonoBehaviour, ITrap
 {
     public float damage = 5f;
+
+    public float Damage => damage;
 
     void Start()
     {
