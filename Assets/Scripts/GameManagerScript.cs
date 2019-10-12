@@ -9,9 +9,13 @@ public class GameManagerScript : MonoBehaviour
 {
     public static GameManagerScript i;
 
+    public GameObject LogoScreen;
+
     public GameObject StartScreen;
 
-    public GameObject InstructionScreen;
+    public GameObject Instruction1Screen;
+
+    public GameObject Instruction2Screen;
 
     public GameObject EndScreen;
 
@@ -57,6 +61,14 @@ public class GameManagerScript : MonoBehaviour
 
     public float rushModeExtraSpeed;
 
+    public float logoScreenDurationSec;
+
+    public KeyCode keyToContinue;
+
+    public KeyCode keyToPlayAgain;
+
+    public KeyCode keyToExit;
+
     public bool isGameOver;
 
     private float extraSpeed;
@@ -80,19 +92,37 @@ public class GameManagerScript : MonoBehaviour
 
     void Start()
     {
+        LogoScreen.SetActive(true);
+        StartCoroutine(LogoScreenCoroutine());
+    }
+
+    private IEnumerator LogoScreenCoroutine()
+    {
+        yield return new WaitForSeconds(logoScreenDurationSec);
+        LogoScreen.SetActive(false);
         StartScreen.SetActive(true);
     }
 
     void Update()
     {
-        if (StartScreen.activeSelf && Input.anyKeyDown)
+        if (LogoScreen.activeSelf)
+        {
+            return;
+        }
+
+        if (StartScreen.activeSelf && Input.GetKeyDown(keyToContinue))
         {
             StartScreen.SetActive(false);
-            InstructionScreen.SetActive(true);
+            Instruction1Screen.SetActive(true);
         }
-        else if (InstructionScreen.activeSelf && Input.anyKeyDown)
+        else if (Instruction1Screen.activeSelf && Input.GetKeyDown(keyToContinue))
         {
-            InstructionScreen.SetActive(false);
+            Instruction1Screen.SetActive(false);
+            Instruction2Screen.SetActive(true);
+        }
+        else if (Instruction2Screen.activeSelf && Input.GetKeyDown(keyToContinue))
+        {
+            Instruction2Screen.SetActive(false);
             GameStart();
         }
         else if (!this.isGameOver)
@@ -105,6 +135,14 @@ public class GameManagerScript : MonoBehaviour
                     scoreTexts[i].text = Mathf.RoundToInt(teamScores[i]).ToString();
                 }
             }
+        }
+        else if (Input.GetKeyDown(keyToPlayAgain))
+        {
+            GameRestart();
+        }
+        else if (Input.GetKeyDown(keyToExit))
+        {
+            GameExit();
         }
     }
 
