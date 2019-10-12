@@ -21,6 +21,10 @@ public class FlagScript : MonoBehaviour, IDynamicObject
 
     public PlayerScript carrierPlayer;
 
+    public FlagStartPointScript startPointScript;
+
+    public ObjectScript objectScript;
+
     public bool isDropped;
 
     public float playerSpeedReduceWhenGrabbed;
@@ -33,12 +37,11 @@ public class FlagScript : MonoBehaviour, IDynamicObject
         set { team = value; }
     }
 
-    private ObjectScript objectScript;
-
     void Start()
     {
         //Utils.MakeAnimation(objectScript, positionDurationSec, positionSprites);
         Utils.MakeAnimation(objectScript, spritesDurationSec, onBaseSprites);
+        startPointScript.ChangeAnimation(false);
     }
 
     void Update()
@@ -62,13 +65,14 @@ public class FlagScript : MonoBehaviour, IDynamicObject
         gameObject.SetActive(false);
         transform.parent = carrierPlayer.transform;
         transform.localPosition = new Vector3(0, 0, transform.localPosition.z);
+        startPointScript.ChangeAnimation(false);
     }
 
     public void Drop(Vector3 position)
     {
         Debug.Log($"{this.Team} flag was dropped!");
         this.isDropped = true;
-        this.SetPosition(position);
+        this.SetPosition(position, false);
         Utils.MakeAnimation(objectScript, spritesDurationSec, droppedSprites);
     }
 
@@ -77,7 +81,7 @@ public class FlagScript : MonoBehaviour, IDynamicObject
         Debug.Log($"{this.Team} flag was conveyed!");
         this.isDropped = false;
         GameManagerScript.i.AddScores(ScoreOption.FlagConvey, carrierPlayer.Team);
-        this.SetPosition(GameManagerScript.i.flagStartPoints[(int)this.Team].position);
+        this.SetPosition(startPointScript.transform.position);
         Utils.MakeAnimation(objectScript, spritesDurationSec, onBaseSprites);
     }
 
@@ -85,17 +89,22 @@ public class FlagScript : MonoBehaviour, IDynamicObject
     {
         Debug.Log($"{this.Team} flag was returned!");
         this.isDropped = false;
-        this.SetPosition(GameManagerScript.i.flagStartPoints[(int)this.Team].position);
+        this.SetPosition(startPointScript.transform.position);
         Utils.MakeAnimation(objectScript, spritesDurationSec, onBaseSprites);
     }
 
-    private void SetPosition(Vector3 position)
+    private void SetPosition(Vector3 position, bool isStartPoint = true)
     {
         gameObject.SetActive(false);
         transform.parent = GameManagerScript.i.map;
         transform.position = new Vector3(position.x, position.y, transform.position.z);
         carrierPlayer = null;
         gameObject.SetActive(true);
+        if (isStartPoint)
+        {
+            startPointScript.ChangeAnimation(true);
+        }
+
         //Utils.MakeAnimation(objectScript, positionDurationSec, positionSprites);
     }
 

@@ -67,10 +67,27 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1363938641, guid: 957b52d5b284fc94d95b4563ac3e394c, type: 3}
+      propertyPath: sprites.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: 67d99626a016754439f1fefad19a1c90,
+        type: 3}
     - target: {fileID: 7135848275687653675, guid: 957b52d5b284fc94d95b4563ac3e394c,
         type: 3}
       propertyPath: team
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7135848275687653675, guid: 957b52d5b284fc94d95b4563ac3e394c,
+        type: 3}
+      propertyPath: withFlagSprites.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: 67d99626a016754439f1fefad19a1c90,
+        type: 3}
+    - target: {fileID: 6838329189394006246, guid: 957b52d5b284fc94d95b4563ac3e394c,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 67d99626a016754439f1fefad19a1c90,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 957b52d5b284fc94d95b4563ac3e394c, type: 3}

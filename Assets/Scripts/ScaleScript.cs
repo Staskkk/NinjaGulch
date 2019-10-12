@@ -16,9 +16,18 @@ public class ScaleScript : MonoBehaviour
 
     public RectTransform rightPanel;
 
+    public RectTransform timer;
+
+    private float correctScreenRatioDiff;
+
+    private float correctScreenRatio;
+
     void Start()
     {
-        Resize();
+        float correctScreenWidth = width + leftPanel.rect.width + rightPanel.rect.width;
+        correctScreenRatioDiff = correctScreenWidth - height;
+        correctScreenRatio = correctScreenWidth / height;
+        Resize(); 
     }
 
     void FixedUpdate()
@@ -31,8 +40,6 @@ public class ScaleScript : MonoBehaviour
 
     void Resize()
     {
-        float panelWidth = leftPanel.rect.width;
-
         float worldScreenHeight = Camera.main.orthographicSize * 2f;
         float worldScreenWidth = worldScreenHeight / Screen.height * Screen.width;
 
@@ -41,8 +48,16 @@ public class ScaleScript : MonoBehaviour
 
         Vector3 imgScale = new Vector3(1f, 1f, 1f);
 
-        float fullScaleX = worldScreenWidth * 0.801f / width;
-        float fullScaleY = worldScreenHeight / height;
+        float mapWidth = worldScreenWidth * 0.801f;
+        float mapHeight = worldScreenHeight;
+
+        float fullScaleX = mapWidth / width;
+        float fullScaleY = mapHeight / height;
+
+        float scale = transform.localScale.x;
+        float bias = (worldScreenWidth - worldScreenHeight - correctScreenRatioDiff) / 2;
+        float xBias = bias < 0 ? 0 : bias;
+        float yBias = bias > 0 ? 0 : bias;
 
         if (fullScaleX < fullScaleY)
         {
@@ -55,9 +70,13 @@ public class ScaleScript : MonoBehaviour
             imgScale.y = fullScaleY;
         }
 
-        Vector3 panelScale = new Vector3(worldScreenWidth * 0.09375f / panelWidth, 1, 1);
-        leftPanel.localScale = panelScale;
-        rightPanel.localScale = panelScale;
+        leftPanel.localScale = imgScale;
+        leftPanel.anchoredPosition = new Vector2(xBias, leftPanel.anchoredPosition.y);
+        rightPanel.localScale = imgScale;
+        rightPanel.anchoredPosition = new Vector2(-xBias, rightPanel.anchoredPosition.y);
+        timer.localScale = imgScale;
+        timer.anchoredPosition = new Vector2(timer.anchoredPosition.x, yBias / correctScreenRatio);
         transform.localScale = imgScale;
+        //Debug.Log(worldScreenWidth + " " + worldScreenHeight + " " + yBias);
     }
 }

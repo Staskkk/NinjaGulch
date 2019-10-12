@@ -7,6 +7,14 @@ public class FlagStartPointScript : MonoBehaviour, IDynamicObject
 {
     public Team team;
 
+    public Sprite[] withFlagSprites;
+
+    public Sprite[] withoutFlagSprites;
+
+    public ObjectScript objectScript;
+
+    public float spritesDurationSec;
+
     public Team Team
     {
         get { return team; }
@@ -19,6 +27,18 @@ public class FlagStartPointScript : MonoBehaviour, IDynamicObject
 
     void Start()
     {      
+    }
+
+    public void ChangeAnimation(bool isFlagKeeped)
+    {
+        if (isFlagKeeped)
+        {
+            Utils.MakeAnimation(objectScript, spritesDurationSec, withFlagSprites);
+        }
+        else
+        {
+            Utils.MakeAnimation(objectScript, spritesDurationSec, withoutFlagSprites);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)

@@ -39,8 +39,6 @@ public class GameManagerScript : MonoBehaviour
 
     public Transform[] ninjaStartPoints;
 
-    public Transform[] flagStartPoints;
-
     public Transform powerUpStartPoint;
 
     public float powerUpPreAppearDelay;
@@ -165,11 +163,10 @@ public class GameManagerScript : MonoBehaviour
         WinScreen.SetActive(false);
         isGameOver = false;
         teamScores = new float[2];
+        ReturnFlags();
         RepairTraps();
         CreateNinja(Team.Blue);
         CreateNinja(Team.Red);
-        CreateGameObject(flagBlue, flagStartPoints[(int)Team.Blue]);
-        CreateGameObject(flagRed, flagStartPoints[(int)Team.Red]);
         powerUpCoroutine = StartCoroutine(PowerUpGenerator());
         if (!isEndless)
         {
@@ -186,6 +183,19 @@ public class GameManagerScript : MonoBehaviour
             if (trapScript != null)
             {
                 trapScript.Repair();
+            }
+        }
+    }
+
+    public void ReturnFlags()
+    {
+        var flags = GameObject.FindGameObjectsWithTag("Flag");
+        foreach (var flag in flags)
+        {
+            var flagScript = flag.GetComponent<FlagScript>();
+            if (flagScript != null)
+            {
+                flagScript.Return();
             }
         }
     }
