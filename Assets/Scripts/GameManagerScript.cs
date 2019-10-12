@@ -17,7 +17,7 @@ public class GameManagerScript : MonoBehaviour
 
     public GameObject Instruction2Screen;
 
-    public GameObject EndScreen;
+    public GameObject WinScreen;
 
     public TextMeshProUGUI timerText;
 
@@ -162,7 +162,7 @@ public class GameManagerScript : MonoBehaviour
     public void GameStart()
     {
         map.gameObject.SetActive(true);
-        EndScreen.SetActive(false);
+        WinScreen.SetActive(false);
         isGameOver = false;
         teamScores = new float[2];
         RepairTraps();
@@ -294,12 +294,17 @@ public class GameManagerScript : MonoBehaviour
             Destroy(gameObj);
         }
 
-        EndScreen.SetActive(true);
+        WinScreen.GetComponent<WinScreenScript>().SetGameResult(teamScores);
+        WinScreen.SetActive(true);
         map.gameObject.SetActive(false);
     }
 
     public void GameExit()
     {
-        Application.Quit();
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+         Application.Quit();
+#endif
     }
 }

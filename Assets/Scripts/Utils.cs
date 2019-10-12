@@ -39,6 +39,12 @@ public enum ScoreOption
     FlagConvey,
 }
 
+public enum GameResult
+{
+    Win = 0,
+    Draw = 1
+}
+
 public delegate void NextAction();
 
 public delegate void SetupParamsFunc(GameObject obj);
