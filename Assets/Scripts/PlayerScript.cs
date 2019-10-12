@@ -67,7 +67,7 @@ public class PlayerScript : MonoBehaviour, IDynamicObject
 
     void Update()
     {
-        if (this.isInDeathCondition && !playerAttack.isHitting)
+        if (this.isInDeathCondition && !playerAttack.isHitting && this.isAlive)
         {
             this.Die();
         }
