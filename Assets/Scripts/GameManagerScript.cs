@@ -25,6 +25,12 @@ public class GameManagerScript : MonoBehaviour
 
     public TextMeshProUGUI[] scoreTexts;
 
+    public Image countdownImage;
+
+    public Sprite[] startGameCountDownSprites;
+
+    public Sprite[] rushModeCountDownSprites;
+
     public GameObject ninjaBlue;
 
     public GameObject ninjaRed;
@@ -57,6 +63,8 @@ public class GameManagerScript : MonoBehaviour
 
     public bool isRushMode;
 
+    public bool isRushModeStarting;
+
     public float rushModeExtraSpeed;
 
     public float logoScreenDurationSec;
@@ -66,8 +74,6 @@ public class GameManagerScript : MonoBehaviour
     public KeyCode keyToPlayAgain;
 
     public KeyCode keyToExit;
-
-    public bool isGameOver;
 
     private float extraSpeed;
 
@@ -90,6 +96,7 @@ public class GameManagerScript : MonoBehaviour
 
     void Start()
     {
+        GameClean();
         LogoScreen.SetActive(true);
         StartCoroutine(LogoScreenCoroutine());
     }
@@ -121,9 +128,9 @@ public class GameManagerScript : MonoBehaviour
         else if (Instruction2Screen.activeSelf && Input.GetKeyDown(keyToContinue))
         {
             Instruction2Screen.SetActive(false);
-            GameStart();
+            StartCoroutine(GameStartCoroutine());
         }
-        else if (!this.isGameOver)
+        else if (!WinScreen.activeSelf)
         {
             for (int i = 0; i < ninjas.Length; i++)
             {
@@ -144,6 +151,38 @@ public class GameManagerScript : MonoBehaviour
         }
     }
 
+    private IEnumerator GameStartCoroutine()
+    {
+        countdownImage.gameObject.SetActive(true);
+        countdownImage.sprite = startGameCountDownSprites[0];
+        yield return new WaitForSeconds(1);
+        countdownImage.sprite = startGameCountDownSprites[1];
+        yield return new WaitForSeconds(1);
+        countdownImage.sprite = startGameCountDownSprites[2];
+        yield return new WaitForSeconds(1);
+        countdownImage.sprite = startGameCountDownSprites[3];
+        GameStart();
+        yield return new WaitForSeconds(1);
+        countdownImage.gameObject.SetActive(false);
+        countdownImage.sprite = null;
+    }
+
+    private IEnumerator RushModeCoroutine()
+    {
+        countdownImage.gameObject.SetActive(true);
+        countdownImage.sprite = rushModeCountDownSprites[0];
+        yield return new WaitForSeconds(1);
+        countdownImage.sprite = rushModeCountDownSprites[1];
+        yield return new WaitForSeconds(1);
+        countdownImage.sprite = rushModeCountDownSprites[2];
+        yield return new WaitForSeconds(1);
+        countdownImage.sprite = rushModeCountDownSprites[3];
+        RushModeStart();
+        yield return new WaitForSeconds(1);
+        countdownImage.gameObject.SetActive(false);
+        countdownImage.sprite = null;
+    }
+
     public void AddScores(ScoreOption scoreOption, Team team)
     {
         switch (scoreOption)
@@ -157,17 +196,21 @@ public class GameManagerScript : MonoBehaviour
         }
     }
 
+    public void RushModeStart()
+    {
+        isRushMode = true;
+        var players = GameObject.FindGameObjectsWithTag("Player");
+        timerText.color = Color.red;
+        extraSpeed = rushModeExtraSpeed;
+        foreach (var player in players)
+        {
+            player.GetComponent<PlayerScript>().speed += extraSpeed;
+        }
+    }
+
     public void GameStart()
     {
-        map.gameObject.SetActive(true);
-        WinScreen.SetActive(false);
-        timerText.color = Color.white;
-        extraSpeed = 0;
-        isRushMode = false;
-        isGameOver = false;
-        teamScores = new float[2];
-        ReturnFlags();
-        RepairTraps();
+        GameClean();
         CreateNinja(Team.Blue);
         CreateNinja(Team.Red);
         powerUpCoroutine = StartCoroutine(PowerUpGenerator());
@@ -223,16 +266,10 @@ public class GameManagerScript : MonoBehaviour
             yield return new WaitForSeconds(1);
             gameTimeout--;
             timerText.text = System.TimeSpan.FromSeconds(gameTimeout).ToString(@"mm\:ss");
-            if (gameTimeout <= rushModeTimeSec && !isRushMode)
+            if (gameTimeout <= rushModeTimeSec + 3 && !isRushModeStarting)
             {
-                isRushMode = true;
-                var players = GameObject.FindGameObjectsWithTag("Player");
-                timerText.color = Color.red;
-                extraSpeed = rushModeExtraSpeed;
-                foreach (var player in players)
-                {
-                    player.GetComponent<PlayerScript>().speed += extraSpeed;
-                }
+                isRushModeStarting = true;
+                StartCoroutine(RushModeCoroutine());
             }
         }
 
@@ -284,14 +321,25 @@ public class GameManagerScript : MonoBehaviour
 
     public void GameRestart()
     {
-        GameOver();
-        GameStart();
+        GameClean();
+        StartCoroutine(GameStartCoroutine());
     }
 
-    public void GameOver()
+    public void GameClean()
     {
-        this.isGameOver = true;
-        this.ReturnFlags();
+        WinScreen.SetActive(false);
+        timerText.color = Color.white;
+        timerText.text = System.TimeSpan.FromSeconds(gameTimeoutSec).ToString(@"mm\:ss");
+        scoreTexts[0].text = "0000";
+        scoreTexts[1].text = "0000";
+        healthHearts[0].fillAmount = 1;
+        healthHearts[1].fillAmount = 1;
+        extraSpeed = 0;
+        isRushModeStarting = false;
+        isRushMode = false;
+        teamScores = new float[2];
+        ReturnFlags();
+        RepairTraps();
         if (powerUpCoroutine != null)
         {
             StopCoroutine(powerUpCoroutine);
@@ -302,15 +350,19 @@ public class GameManagerScript : MonoBehaviour
             StopCoroutine(gameTimeoutCoroutine);
         }
 
-        timerText.text = "GAME OVER!";
         foreach (var gameObj in gameObjects)
         {
             Destroy(gameObj);
         }
 
+        gameObjects.Clear();
+    }
+
+    public void GameOver()
+    {
         WinScreen.GetComponent<WinScreenScript>().SetGameResult(teamScores);
+        this.GameClean();
         WinScreen.SetActive(true);
-        map.gameObject.SetActive(false);
     }
 
     public void GameExit()
