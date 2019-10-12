@@ -161,6 +161,9 @@ public class GameManagerScript : MonoBehaviour
     {
         map.gameObject.SetActive(true);
         WinScreen.SetActive(false);
+        timerText.color = Color.white;
+        extraSpeed = 0;
+        isRushMode = false;
         isGameOver = false;
         teamScores = new float[2];
         ReturnFlags();
@@ -288,6 +291,7 @@ public class GameManagerScript : MonoBehaviour
     public void GameOver()
     {
         this.isGameOver = true;
+        this.ReturnFlags();
         if (powerUpCoroutine != null)
         {
             StopCoroutine(powerUpCoroutine);

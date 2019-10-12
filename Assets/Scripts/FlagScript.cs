@@ -65,6 +65,7 @@ public class FlagScript : MonoBehaviour, IDynamicObject
         gameObject.SetActive(false);
         transform.parent = carrierPlayer.transform;
         transform.localPosition = new Vector3(0, 0, transform.localPosition.z);
+        gameObject.SetActive(true);
         startPointScript.ChangeAnimation(false);
     }
 
