@@ -77,6 +77,5 @@ public class ScaleScript : MonoBehaviour
         timer.localScale = imgScale;
         timer.anchoredPosition = new Vector2(timer.anchoredPosition.x, yBias / correctScreenRatio);
         transform.localScale = imgScale;
-        //Debug.Log(worldScreenWidth + " " + worldScreenHeight + " " + yBias);
     }
 }
