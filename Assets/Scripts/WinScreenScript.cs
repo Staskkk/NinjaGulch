@@ -8,51 +8,60 @@ public class WinScreenScript : MonoBehaviour
 {
     public TextMeshProUGUI[] scoreTexts;
 
+    public Image congratulationImage;
+
     public Image ninjaImage;
 
     public Image teamImage;
 
     public Image resultImage;
 
+    public Image tieBlueNinjaImage;
+
+    public Image tieRedNinjaImage;
+
+    public Image tieResultImage;
+
+    public Sprite[] congratulationSprites;
+
     public Sprite[] ninjaSprites;
 
     public Sprite[] teamSprites;
 
-    public Sprite[] resultSprites;
-
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        
-    }
 
     public void SetGameResult(float[] teamScores)
     {
+        ninjaImage.gameObject.SetActive(true);
+        teamImage.gameObject.SetActive(true);
+        resultImage.gameObject.SetActive(true);
+        tieBlueNinjaImage.gameObject.SetActive(false);
+        tieRedNinjaImage.gameObject.SetActive(false);
+        tieResultImage.gameObject.SetActive(false);
         int intScoreBlue = Mathf.RoundToInt(teamScores[(int)Team.Blue]);
         int intScoreRed = Mathf.RoundToInt(teamScores[(int)Team.Red]);
         scoreTexts[(int)Team.Blue].text = intScoreBlue.ToString();
         scoreTexts[(int)Team.Red].text = intScoreRed.ToString();
         if (intScoreBlue == intScoreRed)
         {
-            ninjaImage.sprite = null;
-            teamImage.sprite = null;
-            resultImage.sprite = resultSprites[(int)GameResult.Draw];
+            congratulationImage.sprite = congratulationSprites[(int)GameResult.Draw];
+            ninjaImage.gameObject.SetActive(false);
+            teamImage.gameObject.SetActive(false);
+            resultImage.gameObject.SetActive(false);
+            tieBlueNinjaImage.gameObject.SetActive(true);
+            tieRedNinjaImage.gameObject.SetActive(true);
+            tieResultImage.gameObject.SetActive(true);
         }
         else if (intScoreBlue > intScoreRed)
         {
+            congratulationImage.sprite = congratulationSprites[(int)GameResult.Win];
             ninjaImage.sprite = ninjaSprites[(int)Team.Blue];
             teamImage.sprite = teamSprites[(int)Team.Blue];
-            resultImage.sprite = resultSprites[(int)GameResult.Win];
         }
         else
         {
+            congratulationImage.sprite = congratulationSprites[(int)GameResult.Win];
             ninjaImage.sprite = ninjaSprites[(int)Team.Red];
             teamImage.sprite = teamSprites[(int)Team.Red];
-            resultImage.sprite = resultSprites[(int)GameResult.Win];
         }
     }
 }
