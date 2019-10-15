@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManagerScript : MonoBehaviour
@@ -75,6 +76,12 @@ public class GameManagerScript : MonoBehaviour
 
     public KeyCode keyToExit;
 
+    public KeyCode keyToExitAnyTime;
+
+    public KeyCode keyToRestartAnyTime1;
+
+    public KeyCode keyToRestartAnyTime2;
+
     private float extraSpeed;
 
     private List<GameObject> gameObjects = new List<GameObject>();
@@ -110,6 +117,16 @@ public class GameManagerScript : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKeyDown(keyToExitAnyTime))
+        {
+            GameExit();
+        }
+
+        if (Input.GetKeyDown(keyToRestartAnyTime1) || Input.GetKeyDown(keyToRestartAnyTime2))
+        {
+            FullGameRestart();
+        }
+
         if (LogoScreen.activeSelf)
         {
             return;
@@ -323,6 +340,11 @@ public class GameManagerScript : MonoBehaviour
     {
         GameClean();
         StartCoroutine(GameStartCoroutine());
+    }
+
+    public void FullGameRestart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void GameClean()

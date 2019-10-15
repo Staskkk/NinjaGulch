@@ -1485,6 +1485,9 @@ MonoBehaviour:
   keyToContinue: 115
   keyToPlayAgain: 115
   keyToExit: 107
+  keyToExitAnyTime: 27
+  keyToRestartAnyTime1: 32
+  keyToRestartAnyTime2: 114
 --- !u!1 &341387429
 GameObject:
   m_ObjectHideFlags: 0
